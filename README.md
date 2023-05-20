@@ -71,7 +71,7 @@ website.
 
 ### TEAM
 
-Team Member 1: Abraham OLAGUNJU - Full-Stack Developer
-Team Member 2: Chukwudi ONYENIKE - DevOps Engineer
+1. Team Member 1: Abraham OLAGUNJU - Full-Stack Developer
+1. Team Member 2: Chukwudi ONYENIKE - DevOps Engineer
 
 [Read More About the project here!](https://docs.google.com/document/d/1ADEp8iA4lPIjqcgZSQ1AkKpEK3MMria0KNvj8GMK0mc/edit?usp=sharing)
