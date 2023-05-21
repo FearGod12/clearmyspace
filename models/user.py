@@ -21,6 +21,10 @@ class User(BaseModel, Base):
     city_id = Column(String(60), ForeignKey('cities.id'), nullable=True)
     country_id = Column(String(60), ForeignKey('countries.id'), nullable=True)
 
+    city = relationship("City")
+    state = relationship("State")
+    country = relationship("Country")
+
     def __init__(self, *args, **kwargs):
         """initializes Users"""
         if 'password' in kwargs:
