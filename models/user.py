@@ -12,9 +12,11 @@ class User(BaseModel, Base):
     __tablename__ = 'users'
 
     username = Column(String(255), nullable=False)
-    email = Column(String(256), nullable=False)
-    password = Column(String(256), nullable=True)
-    address = Column(String(256), nullable=True)
+    firstname = Column(String(255), nullable=False)
+    lastname = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=False)
+    password = Column(String(255), nullable=True)
+    address = Column(String(255), nullable=True)
     state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
     city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
     country_id = Column(String(60), ForeignKey('countries.id'), nullable=False)
