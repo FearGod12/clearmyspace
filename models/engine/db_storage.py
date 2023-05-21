@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from os import getenv
 
-from models.test_base_model import Base, BaseModel
+from models.base_model import Base, BaseModel
 
 # importing and grouping of models' classes
 from models.category import Category

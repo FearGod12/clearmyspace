@@ -2,7 +2,7 @@
 """ holds class Review"""
 
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey
 
 
 class Review(BaseModel, Base):

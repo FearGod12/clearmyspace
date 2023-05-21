@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """contains the class Category"""
 
-from models.test_base_model import Base, BaseModel
+from models.base_model import Base, BaseModel
 from sqlalchemy import Column, String
 
 

@@ -2,7 +2,7 @@
 """contains Item class"""
 
 from models.base_model import Base, BaseModel
-from sqlalchemy import Column, String, Integer Boolean, ForeignKey
+from sqlalchemy import Column, String, Integer, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 
