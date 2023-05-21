@@ -18,3 +18,5 @@ class Item(BaseModel, Base):
     seller_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     category_id = Column(String(60), ForeignKey('categories.id'),
                          nullable=False)
+
+    category = relationship("Category")

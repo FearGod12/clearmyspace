@@ -3,6 +3,7 @@
 
 from models.base_model import Base, BaseModel
 from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 
 class Chatlog(BaseModel, Base):
@@ -11,3 +12,5 @@ class Chatlog(BaseModel, Base):
 
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     chat_id = Column(String(60), ForeignKey('chats.id'), nullable=False)
+
+    chat = relationship("Chat")

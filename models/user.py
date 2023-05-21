@@ -24,6 +24,9 @@ class User(BaseModel, Base):
     city = relationship("City")
     state = relationship("State")
     country = relationship("Country")
+    listings = relationship("Item", backref="seller",
+                            cascade="all, delete, delete-orphan")
+    chatlogs = relationship("Chatlog")
 
     def __init__(self, *args, **kwargs):
         """initializes Users"""
@@ -33,3 +36,9 @@ class User(BaseModel, Base):
             m.update(str.encode(password))
             kwargs['password'] = m.hexdigest()
         super().__init__(*args, **kwargs)
+
+
+    @property
+    def name(self):
+        """A getter for firstname and lastname combined"""
+        return "{} {}".format(self.firstname, self.lastname)
