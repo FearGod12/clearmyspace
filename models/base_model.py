@@ -14,8 +14,10 @@ Base = declarative_base()
 class BaseModel:
     """Sample BaseModel"""
     id = Column(String(60), primary_key=True)
-    created_at = Column(DateTime, default=lambda: datetime.utcnow())
-    updated_at = Column(DateTime, default=lambda: datetime.utcnow())
+    created_at = Column(DateTime, default=lambda: datetime.utcnow(),
+                        nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.utcnow(),
+                        nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Class constructor"""
