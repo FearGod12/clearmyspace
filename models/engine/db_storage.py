@@ -8,8 +8,19 @@ from os import getenv
 from models.test_base_model import Base, BaseModel
 
 # importing and grouping of models' classes
-from models.test_category import Category
-classes = [Category]
+from models.category import Category
+from models.chat import Chat
+from models.chatlog import Chatlog
+from models.city import City
+from models.country import Country
+from models.item import Item
+from models.purchase import Purchase
+from models.review import Review
+from models.state import State
+from models.user import User
+
+classes = [Category, Chat, Chatlog, City, Country, Item, Purchase,
+           Review, State, User]
 
 
 class DBStorage:
