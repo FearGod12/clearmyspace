@@ -17,9 +17,9 @@ class User(BaseModel, Base):
     email = Column(String(255), nullable=False)
     password = Column(String(255), nullable=True)
     address = Column(String(255), nullable=True)
-    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-    city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
-    country_id = Column(String(60), ForeignKey('countries.id'), nullable=False)
+    state_id = Column(String(60), ForeignKey('states.id'), nullable=True)
+    city_id = Column(String(60), ForeignKey('cities.id'), nullable=True)
+    country_id = Column(String(60), ForeignKey('countries.id'), nullable=True)
 
     def __init__(self, *args, **kwargs):
         """initializes Users"""
