@@ -7,7 +7,7 @@ from sqlalchemy import Column, String, ForeignKey
 
 class Chatlog(BaseModel, Base):
     """Chatlog class"""
-    __tablename__ = 'Chatlogs'
+    __tablename__ = 'chatlogs'
 
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     chat_id = Column(String(60), ForeignKey('chats.id'), nullable=False)
