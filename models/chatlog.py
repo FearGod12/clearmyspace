@@ -11,7 +11,3 @@ class Chatlog(BaseModel, Base):
 
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     chat_id = Column(String(60), ForeignKey('chats.id'), nullable=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes Users"""
-        super().__init__(*args, **kwargs)

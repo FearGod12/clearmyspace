@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 
 
 class Item(BaseModel, Base):
-    """A class for category clas"""
+    """Representaion of Item class"""
     __tablename__ = 'items'
 
     name = Column(String(255), nullable=False)
@@ -18,7 +18,3 @@ class Item(BaseModel, Base):
     seller_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     category_id = Column(String(60), ForeignKey('categories.id'),
                          nullable=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes items"""
-        super().__init__(*args, **kwargs)

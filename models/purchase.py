@@ -13,7 +13,3 @@ class Purchase(BaseModel, Base):
     reference_id = Column(String(60), default=lambda: str(uuid.uuid4()))
     buyer_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     item_id = Column(String(60), ForeignKey('items.id'), nullable=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes Users"""
-        super().__init__(*args, **kwargs)

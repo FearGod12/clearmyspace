@@ -8,7 +8,7 @@ import hashlib
 
 
 class User(BaseModel, Base):
-    """Users clas"""
+    """Users class"""
     __tablename__ = 'users'
 
     username = Column(String(255), nullable=False)

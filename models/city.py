@@ -7,12 +7,8 @@ from sqlalchemy.orm import relationship
 
 
 class City(BaseModel, Base):
-    """A test class for category clas"""
+    """Representation of city class"""
     __tablename__ = 'cities'
 
     name = Column(String(255), nullable=False)
     state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes state"""
-        super().__init__(*args, **kwargs)
