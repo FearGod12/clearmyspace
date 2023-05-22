@@ -13,4 +13,5 @@ class Chatlog(BaseModel, Base):
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     chat_id = Column(String(60), ForeignKey('chats.id'), nullable=False)
 
+    user = relationship("User", backref="chatlogs")
     chat = relationship("Chat")

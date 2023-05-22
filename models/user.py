@@ -26,7 +26,7 @@ class User(BaseModel, Base):
     country = relationship("Country")
     listings = relationship("Item", backref="seller",
                             cascade="all, delete, delete-orphan")
-    chatlogs = relationship("Chatlog")
+    # chatlogs = relationship("Chatlog")
 
     def __init__(self, *args, **kwargs):
         """initializes Users"""
