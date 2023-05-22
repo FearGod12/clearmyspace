@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test model for storage engine"""
+"""basemodel from which all other classes will inherit"""
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
@@ -10,11 +10,14 @@ import models
 
 Base = declarative_base()
 
+
 class BaseModel:
     """Sample BaseModel"""
     id = Column(String(60), primary_key=True)
-    created_at = Column(DateTime, default=lambda: datetime.utcnow())
-    updated_at = Column(DateTime, default=lambda: datetime.utcnow())
+    created_at = Column(DateTime, default=lambda: datetime.utcnow(),
+                        nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.utcnow(),
+                        nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Class constructor"""
@@ -29,6 +32,8 @@ class BaseModel:
                 __pstr = "%Y-%m-%d %H:%M:%S.%f"
                 if kwargs.get(time, None) and type(getattr(self, time)) is str:
                     setattr(self, time, strptime(kwarg[time], __pstr))
+                elif type(getattr(self, time)) is datetime:
+                    pass
                 else:
                     setattr(self, time, datetime.utcnow())
 
