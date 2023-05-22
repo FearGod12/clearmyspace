@@ -37,7 +37,6 @@ class User(BaseModel, Base):
             kwargs['password'] = m.hexdigest()
         super().__init__(*args, **kwargs)
 
-
     @property
     def name(self):
         """A getter for firstname and lastname combined"""

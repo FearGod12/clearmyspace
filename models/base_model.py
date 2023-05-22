@@ -32,6 +32,8 @@ class BaseModel:
                 __pstr = "%Y-%m-%d %H:%M:%S.%f"
                 if kwargs.get(time, None) and type(getattr(self, time)) is str:
                     setattr(self, time, strptime(kwarg[time], __pstr))
+                elif type(getattr(self, time)) is datetime:
+                    pass
                 else:
                     setattr(self, time, datetime.utcnow())
 
