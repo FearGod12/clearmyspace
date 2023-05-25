@@ -42,22 +42,16 @@ class User(BaseModel, Base):
         """A getter for firstname and lastname combined"""
         return "{} {}".format(self.firstname, self.lastname)
 
-    def new_chat(self, recipient_id, message, attachments=[]):
-        """Creates a new Chat object with a matching
-        `recipient_id` user obj"""
+    def new_chat(self, recipient, message, attachments=[]):
+        """Creates a new Chat object with `recipient` user obj"""
         from models.chat import Chat
         chat = Chat(body=self.make_message(message, attachments),
-                    user_ids=[self.id, recipient_id])
-        chat.save()
+                    user_ids=[self.id, recipient.id])
 
-    def update_chat(self, chat_id, message, attachements=[]):
+    def update_chat(self, chat, message, attachements=[]):
         """Updates existing conversation with message"""
-        from models import storage
         from models.chat import Chat
-
-        chat = storage.get(Chat, chat_id)
-        if chat is not None:
-            chat.body = self.make_message(message, attachements)
+        chat.body = self.make_message(message, attachements)
 
     def make_message(self, message, attachments):
         """Make a message representation object"""
