@@ -41,3 +41,28 @@ class User(BaseModel, Base):
     def name(self):
         """A getter for firstname and lastname combined"""
         return "{} {}".format(self.firstname, self.lastname)
+
+    def new_chat(self, recipient, message, attachments=[]):
+        """Creates a new Chat object with `recipient` user obj"""
+        from models.chat import Chat
+        chat = Chat(body=self.make_message(message, attachments),
+                    user_ids=[self.id, recipient.id])
+
+    def update_chat(self, chat, message, attachements=[]):
+        """Updates existing conversation with message"""
+        from models.chat import Chat
+        chat.body = self.make_message(message, attachements)
+
+    def make_message(self, message, attachments):
+        """Make a message representation object"""
+        from uuid import uuid4
+        from datetime import datetime
+
+        obj = {}
+        obj['id'] = str(uuid4())
+        obj['user_id'] = self.id
+        obj['created_at'] = str(datetime.utcnow())
+        obj['body'] = message
+        obj['attachments'] = attachments
+
+        return obj
