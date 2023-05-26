@@ -39,3 +39,17 @@ class Chat(BaseModel, Base):
         chat.append(value)
         self.text = json.dumps(chat)
         self.save()
+
+    def to_dict(self):
+        """Returns a dictionary representation of Chat"""
+        obj = {}
+        attr = ['_sa_instance_state']
+        obj.update(self.__dict__)
+        for item in attr:
+            if obj.get(item):
+                obj.pop(item)
+        for item in ['created_at', 'updated_at']:
+            if obj.get(item):
+                obj.update({item: str(obj.get(item))})
+        obj.update({'text': json.loads(obj.get('text'))})
+        return obj
