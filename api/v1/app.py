@@ -19,6 +19,10 @@ def not_found(error):
     """404 Not Found"""
     return jsonify({"error": "Not found!"}), 404
 
+@app.teardown_appcontext
+def close_storage(exception=None):
+    """Close any active SQLAlchemy sessions"""
+    storage.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, threaded=True)
