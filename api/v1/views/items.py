@@ -13,6 +13,7 @@ def get_items():
     items = storage.all(Item)
     return jsonify([item.to_dict() for item in items.values()])
 
+
 @app_views.route('/items', methods=['POST'], strict_slashes=False)
 def create_item():
     """Creates Item"""
@@ -29,6 +30,7 @@ def create_item():
     item.save()
     return jsonify(item.to_dict()), 201
 
+
 @app_views.route('/items/<item_id>', methods=['GET'],
                  strict_slashes=False)
 def get_item(item_id):
@@ -37,6 +39,7 @@ def get_item(item_id):
     if item is None:
         abort(404)
     return jsonify(item.to_dict())
+
 
 @app_views.route('/items/<item_id>', methods=['PUT'],
                  strict_slashes=False)
@@ -55,6 +58,7 @@ def update_item(item_id):
         setattr(item, key, value)
     storage.save()
     return jsonify(item.to_dict())
+
 
 @app_views.route('/items/<item_id>', methods=['DELETE'],
                  strict_slashes=False)
