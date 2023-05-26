@@ -24,7 +24,7 @@ class User(BaseModel, Base):
     city = relationship("City")
     state = relationship("State")
     country = relationship("Country")
-    listings = relationship("Item", backref="seller",
+    listings = relationship("Item", backref="user_id",
                             cascade="all, delete, delete-orphan")
     # chatlogs = relationship("Chatlog")
 

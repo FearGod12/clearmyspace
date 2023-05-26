@@ -47,3 +47,16 @@ class BaseModel:
         """Delete `obj` from storgae"""
         models.storage.delete(self)
         models.storage.save()
+
+    def to_dict(self):
+        """Returns a dictionary representation of an obj"""
+        obj = {}
+        attr = ['_sa_instance_state', 'password']
+        obj.update(self.__dict__)
+        for item in attr:
+            if obj.get(item):
+                obj.pop(item)
+        for item in ['created_at', 'updated_at']:
+            if obj.get(item):
+                obj.update({item: str(obj.get(item))})
+        return obj
