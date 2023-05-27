@@ -10,6 +10,6 @@ from api.v1.views.items import *  # noqa
 from api.v1.views.users import *  # noqa
 from api.v1.views.chats import *  # noqa
 from api.v1.views.reviews import *  # noqa
-from api.v1.views.countries import *
-from api.v1.views.cities import *
-from api.v1.views.states import *
+from api.v1.views.countries import *  # noqa
+from api.v1.views.cities import *  # noqa
+from api.v1.views.states import *  # noqa

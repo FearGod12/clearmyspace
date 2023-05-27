@@ -60,10 +60,10 @@ class DBStorage:
             self.__session.delete(obj)
 
     def rollback(self):
-        '''rolls back the current Sqlalchemy session after a failed flush occured
+        '''rolls back the current Sqlalchemy session
+        after a failed flush occured
         just for testing purposes'''
         self.__session.rollback()
-
 
     def all(self, cls=None):
         """

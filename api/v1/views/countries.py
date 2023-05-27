@@ -35,7 +35,7 @@ def create_country():
     attrs = ['name', 'states']
     for attr in attrs:
         if attr not in data:
-            return jsonify({'error': 'Missing data' + attr}), 400
+            return jsonify({'error': 'Missing data ' + attr}), 400
     country = Country(**data)
     country.save()
     return jsonify(country.to_dict()), 201
