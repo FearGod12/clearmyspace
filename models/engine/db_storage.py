@@ -59,6 +59,12 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
 
+    def rollback(self):
+        '''rolls back the current Sqlalchemy session after a failed flush occured
+        just for testing purposes'''
+        self.__session.rollback()
+
+
     def all(self, cls=None):
         """
         query-> SELECT * FROM cls.__tablename__
