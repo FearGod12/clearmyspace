@@ -59,4 +59,6 @@ class BaseModel:
         for item in ['created_at', 'updated_at']:
             if obj.get(item):
                 obj.update({item: str(obj.get(item))})
+        if hasattr(obj, '_sa_instance_state'):
+            del obj['_sa_instance_state']
         return obj
