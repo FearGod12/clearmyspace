@@ -52,11 +52,12 @@ class BaseModel:
         """Returns a dictionary representation of an obj"""
         obj = {}
         attr = ['_sa_instance_state', 'password']
+        __pstr = "%Y-%m-%d %H:%M:%S.%f"
         obj.update(self.__dict__)
         for item in attr:
             if obj.get(item):
                 obj.pop(item)
         for item in ['created_at', 'updated_at']:
             if obj.get(item):
-                obj.update({item: str(obj.get(item))})
-                return obj
+                obj.update({item: str(obj.get(item).strftime(__pstr))})
+        return obj
