@@ -35,7 +35,7 @@ def create_city():
     attrs = ['name', 'state_id']
     for attr in attrs:
         if attr not in data:
-            return jsonify({'error': 'Missing data' + attr}), 400
+            return jsonify({'error': 'Missing data ' + attr}), 400
     city = City(**data)
     city.save()
     return jsonify(city.to_dict()), 201
