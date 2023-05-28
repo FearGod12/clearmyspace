@@ -32,10 +32,10 @@ def create_state():
     if data is None:
         return jsonify({'error': 'Not a json'}), 400
 
-    attrs = ['name', 'cities', 'country_id']
+    attrs = ['name', 'country_id']
     for attr in attrs:
         if attr not in data:
-            return jsonify({'error': 'Missing data ' + attr}), 400
+            return jsonify({'error': 'Missing data: ' + attr}), 400
     state = State(**data)
     state.save()
     return jsonify(state.to_dict()), 201
@@ -56,9 +56,10 @@ def update_state(state_id):
     if 'id' in data:
         del data['id']
 
-    for key, value in data.items():
-        setattr(state, key, value)
-    state.save()
+    if len(data) != 0:
+        for key, value in data.items():
+            setattr(state, key, value)
+        state.save()
     return jsonify(state.to_dict()), 200
 
 

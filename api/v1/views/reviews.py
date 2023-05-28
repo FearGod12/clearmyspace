@@ -119,7 +119,7 @@ def update_review(user_id, review_id):
 
     setattr(review, 'body', data.get('body', None))
     setattr(review, 'rating', data.get('rating', None))
-    storage.save()
+    review.save()
     return jsonify(review.to_dict())
 
 

@@ -56,7 +56,7 @@ def update_item(item_id):
         data.pop('id')
     for key, value in data.items():
         setattr(item, key, value)
-    storage.save()
+    item.save()
     return jsonify(item.to_dict())
 
 

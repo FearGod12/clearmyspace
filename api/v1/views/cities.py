@@ -56,9 +56,10 @@ def update_city(city_id):
     if 'id' in data:
         del data['id']
 
-    for key, value in data.items():
-        setattr(city, key, value)
-    city.save()
+    if len(data) != 0:
+        for key, value in data.items():
+            setattr(city, key, value)
+        city.save()
     return jsonify(city.to_dict()), 200
 
 

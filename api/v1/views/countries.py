@@ -32,10 +32,10 @@ def create_country():
     if data is None:
         return jsonify({'error': 'Not a json'}), 400
 
-    attrs = ['name', 'states']
+    attrs = ['name']
     for attr in attrs:
         if attr not in data:
-            return jsonify({'error': 'Missing data ' + attr}), 400
+            return jsonify({'error': 'Missing data: ' + attr}), 400
     country = Country(**data)
     country.save()
     return jsonify(country.to_dict()), 201
@@ -55,6 +55,9 @@ def update_country(country_id):
 
     if 'id' in data:
         del data['id']
+
+    if 'name' not in data:
+        return jsonify({'error': 'Missing data: name'}), 400
 
     for key, value in data.items():
         setattr(country, key, value)
