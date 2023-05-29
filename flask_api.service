@@ -1,0 +1,11 @@
+[Unit]
+Description=Flask API Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/cms_api
+ExecStart=/usr/bin/python3 -m api.v1.app:app
+
+[Install]
+WantedBy=multi-user.target

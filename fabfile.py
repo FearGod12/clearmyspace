@@ -93,8 +93,18 @@ def deploy_api():
     with cd("cms_api"):
         with prefix("export CMS_MYSQL_USER={}".format(env.CMS_MYSQL_USER)):
             with prefix("export CMS_MYSQL_PWD={}".format(env.CMS_MYSQL_PWD)):
-                with prefix("export CMS_MYSQL_HOST={}".format(env.CMS_MYSQL_HOST)):
-                    with prefix("export CMS_MYSQL_DB={}".format(env.CMS_MYSQL_DB)):
+                with prefix("export CMS_MYSQL_HOST={}"
+                            .format(env.CMS_MYSQL_HOST)):
+                    with prefix("export CMS_MYSQL_DB={}"
+                                .format(env.CMS_MYSQL_DB)):
                         start = run("python3 -m api.v1.app")
                         if start.succeeded:
                             print('API UP AND RUNNING')
+
+
+def upload_service_script():
+    '''sends the flask_api service script to the server'''
+    put('flask-api.service', '/etc/systemd/system/flask-api.service',
+        use_sudo=True)
+    sudo('systemctl enable flask-api.service')
+    sudo('systemctl start flask-api.service')
