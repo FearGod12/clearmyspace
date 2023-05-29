@@ -21,8 +21,17 @@ def get_country(country_id):
     country = storage.get(Country, country_id)
     if country is None:
         abort(404)
-
     return jsonify(country.to_dict())
+
+
+@app_views.route('/countries/<country_id>/states', methods=['GET'],
+                 strict_slashes=False)
+def get_states_of_country(country_id):
+    '''returns the states in a particular country'''
+    states = storage.get(Country, country_id, attr="states")
+    if states is None:
+        abort(404)
+    return jsonify([state.to_dict() for state in states])
 
 
 @app_views.route('/countries', methods=['POST'], strict_slashes=False)
