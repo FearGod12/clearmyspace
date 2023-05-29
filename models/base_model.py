@@ -31,7 +31,8 @@ class BaseModel:
             for time in ['created_at', 'updated_at']:
                 __pstr = "%Y-%m-%d %H:%M:%S.%f"
                 if kwargs.get(time, None) and type(getattr(self, time)) is str:
-                    setattr(self, time, strptime(kwarg[time], __pstr))
+                    setattr(self, time,
+                            datetime.strptime(kwargs[time], __pstr))
                 elif type(getattr(self, time)) is datetime:
                     pass
                 else:
