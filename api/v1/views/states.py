@@ -25,6 +25,17 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
+@app_views.route('/states/<state_id>/cities', methods=['GET'],
+                 strict_slashes=False)
+def get_cities_of_state(state_id):
+    '''returns the cities in a state'''
+    cities = storage.get(State, state_id, attr="cities")
+    if cities is None:
+        abort(404)
+
+    return jsonify([city.to_dict() for city in cities])
+
+
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     '''creates a new State instance and saves it in storage'''
