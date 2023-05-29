@@ -13,3 +13,4 @@ from api.v1.views.reviews import *  # noqa
 from api.v1.views.countries import *  # noqa
 from api.v1.views.cities import *  # noqa
 from api.v1.views.states import *  # noqa
+from api.v1.views.categories import *  # noqa
