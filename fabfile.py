@@ -61,7 +61,8 @@ def copy_and_unpack_archive():
 def install_dependencies():
     '''install dependencies required to run the Flask API
     if not already installed'''
-    required_packages = ['sqlalchemy', 'mysqlclient', 'flask', 'flask_cors']
+    required_packages = ['sqlalchemy', 'mysqlclient', 'flask', 'flask_cors',
+                         'gunicorn']
     for package in required_packages:
         # Check if the package is already installed
         check = run("pip show {} | grep Version".format(package),
@@ -95,6 +96,6 @@ def deploy_api():
             with prefix("export CMS_MYSQL_PWD={}".format(env.CMS_MYSQL_PWD)):
                 with prefix("export CMS_MYSQL_HOST={}".format(env.CMS_MYSQL_HOST)):
                     with prefix("export CMS_MYSQL_DB={}".format(env.CMS_MYSQL_DB)):
-                        start = run("python3 -m api.v1.app")
-                        if start.succeeded:
-                            print('API UP AND RUNNING')
+                        start = run("pkill gunicorn; gunicorn\
+                                    --bind :5001 api.v1.app:app")
+                        print('API UP AND RUNNING')
