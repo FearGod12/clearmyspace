@@ -80,8 +80,8 @@ def delete_category(category_id):
 def get_category_items(category_id):
     """Return a list of Item of the Category with a matching
     category_id"""
-    category = storage.get(Category, category_id)
-    if category is None:
+    items = storage.get(Category, category_id, attr='items')
+    if items is None:
         abort(404)
 
-    return jsonify([item.to_dict() for item in category.items])
+    return jsonify([item.to_dict() for item in items])
