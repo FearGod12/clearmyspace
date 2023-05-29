@@ -54,9 +54,10 @@ def update_item(item_id):
         return jsonify({'error': 'Not a JSON'}), 400
     if 'id' in data:
         data.pop('id')
-    for key, value in data.items():
-        setattr(item, key, value)
-    item.save()
+    if len(data) != 0:
+        for key, value in data.items():
+            setattr(item, key, value)
+        item.save()
     return jsonify(item.to_dict())
 
 
