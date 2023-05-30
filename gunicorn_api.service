@@ -1,0 +1,11 @@
+[Unit]
+Description=Gunicorn API Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/cms_api
+ExecStart=/home/ubuntu/.local/bin/gunicorn -m api.v1.app:app
+
+[Install]
+WantedBy=multi-user.target
