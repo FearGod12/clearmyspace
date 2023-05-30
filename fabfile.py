@@ -94,8 +94,8 @@ def deploy_api():
 
 
 def upload_service_script():
-    '''sends the flask_api service script to the server'''
-    put('flask-api.service', '/etc/systemd/system/flask-api.service',
+    '''sends the flask api service script to the server'''
+    put('cms_api.service', '/etc/systemd/system/cms_api.service',
         use_sudo=True)
-    sudo('systemctl enable flask-api.service')
-    sudo('systemctl start flask-api.service')
+    sudo('systemctl enable cms_api.service')
+    sudo('systemctl restart cms_api.service')

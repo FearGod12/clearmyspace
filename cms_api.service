@@ -1,0 +1,17 @@
+[Unit]
+Description=ClearMySpace API Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/cms_api
+ExecStart=/home/ubuntu/.local/bin/gunicorn --workers 3 --bind :5001 api.v1.app:app
+Environment="CMS_MYSQL_USER=cms_dev"
+Environment="CMS_MYSQL_PWD=cms_dev_pwd"
+Environment="CMS_MYSQL_HOST=localhost"
+Environment="CMS_MYSQL_DB=cms_dev_db"
+StandardError=file:/tmp/cms-error.log
+StandardOutput=file:/tmp/cms-access.log
+
+[Install]
+WantedBy=multi-user.target
