@@ -12,5 +12,5 @@ class Purchase(BaseModel, Base):
 
     reference_id = Column(String(60), default=lambda: str(uuid.uuid4()),
                           nullable=False)
-    buyer_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     item_id = Column(String(60), ForeignKey('items.id'), nullable=False)
