@@ -10,6 +10,6 @@ class Country(BaseModel, Base):
     """Representation of country class"""
     __tablename__ = 'countries'
 
-    name = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False, unique=True)
     states = relationship("State", backref="country",
                           cascade="all, delete, delete-orphan")

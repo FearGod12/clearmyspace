@@ -31,7 +31,8 @@ class BaseModel:
             for time in ['created_at', 'updated_at']:
                 __pstr = "%Y-%m-%d %H:%M:%S.%f"
                 if kwargs.get(time, None) and type(getattr(self, time)) is str:
-                    setattr(self, time, strptime(kwarg[time], __pstr))
+                    setattr(self, time,
+                            datetime.strptime(kwargs[time], __pstr))
                 elif type(getattr(self, time)) is datetime:
                     pass
                 else:
@@ -52,13 +53,12 @@ class BaseModel:
         """Returns a dictionary representation of an obj"""
         obj = {}
         attr = ['_sa_instance_state', 'password']
+        __pstr = "%Y-%m-%d %H:%M:%S.%f"
         obj.update(self.__dict__)
         for item in attr:
             if obj.get(item):
                 obj.pop(item)
         for item in ['created_at', 'updated_at']:
             if obj.get(item):
-                obj.update({item: str(obj.get(item))})
-        if hasattr(obj, '_sa_instance_state'):
-            del obj['_sa_instance_state']
+                obj.update({item: str(obj.get(item).strftime(__pstr))})
         return obj

@@ -25,6 +25,17 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
+@app_views.route('/states/<state_id>/cities', methods=['GET'],
+                 strict_slashes=False)
+def get_cities_of_state(state_id):
+    '''returns the cities in a state'''
+    cities = storage.get(State, state_id, attr="cities")
+    if cities is None:
+        abort(404)
+
+    return jsonify([city.to_dict() for city in cities])
+
+
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     '''creates a new State instance and saves it in storage'''
@@ -32,10 +43,10 @@ def create_state():
     if data is None:
         return jsonify({'error': 'Not a json'}), 400
 
-    attrs = ['name', 'cities', 'country_id']
+    attrs = ['name', 'country_id']
     for attr in attrs:
         if attr not in data:
-            return jsonify({'error': 'Missing data' + attr}), 400
+            return jsonify({'error': 'Missing data: ' + attr}), 400
     state = State(**data)
     state.save()
     return jsonify(state.to_dict()), 201
@@ -56,9 +67,10 @@ def update_state(state_id):
     if 'id' in data:
         del data['id']
 
-    for key, value in data.items():
-        setattr(state, key, value)
-    state.save()
+    if len(data) != 0:
+        for key, value in data.items():
+            setattr(state, key, value)
+        state.save()
     return jsonify(state.to_dict()), 200
 
 

@@ -19,4 +19,4 @@ class Item(BaseModel, Base):
     category_id = Column(String(60), ForeignKey('categories.id'),
                          nullable=False)
 
-    category = relationship("Category")
+    category = relationship("Category", backref='items')
