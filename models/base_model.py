@@ -32,6 +32,8 @@ class BaseModel:
                 __pstr = "%Y-%m-%d %H:%M:%S.%f"
                 if kwargs.get(time, None) and type(getattr(self, time)) is str:
                     setattr(self, time, strptime(kwarg[time], __pstr))
+                elif type(getattr(self, time)) is datetime:
+                    pass
                 else:
                     setattr(self, time, datetime.utcnow())
 
@@ -45,3 +47,18 @@ class BaseModel:
         """Delete `obj` from storgae"""
         models.storage.delete(self)
         models.storage.save()
+
+    def to_dict(self):
+        """Returns a dictionary representation of an obj"""
+        obj = {}
+        attr = ['_sa_instance_state', 'password']
+        obj.update(self.__dict__)
+        for item in attr:
+            if obj.get(item):
+                obj.pop(item)
+        for item in ['created_at', 'updated_at']:
+            if obj.get(item):
+                obj.update({item: str(obj.get(item))})
+        if hasattr(obj, '_sa_instance_state'):
+            del obj['_sa_instance_state']
+        return obj

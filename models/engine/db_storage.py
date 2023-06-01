@@ -59,6 +59,12 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
 
+    def rollback(self):
+        '''rolls back the current Sqlalchemy session after a failed flush occured
+        just for testing purposes'''
+        self.__session.rollback()
+
+
     def all(self, cls=None):
         """
         query-> SELECT * FROM cls.__tablename__
@@ -83,11 +89,19 @@ class DBStorage:
         """close the current db session"""
         self.__session.remove()
 
-    def get(self, cls, id):
+    def get(self, cls, id, attr=None):
         """
         Returns a `obj` of `cls` with a matching `id`,
         or None if not exists.
         """
         if cls not in classes:
             return None
+        if attr is not None:
+            obj = self.all(cls).get(cls.__name__ + '.' + id, None)
+            if obj is None:
+                return None
+            result = getattr(obj, attr, None)
+            if result is None:
+                return None
+            return result
         return self.all(cls).get(cls.__name__ + '.' + id, None)
