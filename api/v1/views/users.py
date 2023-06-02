@@ -97,6 +97,8 @@ def user_login():
         user = storage.match(User, match={'email': email})
     if username is not None:
         user = storage.match(User, match={'username': username})
+    if user is None:
+        abort(404)
 
     if user.password == md5(password.encode()).hexdigest():
         session['id'] = user.id
