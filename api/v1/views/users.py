@@ -2,12 +2,14 @@
 """API routes for Users"""
 
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, session
 from models import storage
 from models.user import User
+from api.v1.views.user_auth_wrapper import login_required
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
+@login_required
 def get_users():
     """Return all list of users in storage:
     This route will be removed in production, and only will be
@@ -73,4 +75,39 @@ def delete_user(user_id):
         abort(404)
     storage.delete(user)
     storage.save()
+    return jsonify({}), 200
+
+
+@app_views.route('/login', methods=['POST'], strict_slashes=False)
+def user_login():
+    """Validates user login and creates a session if exists"""
+    from hashlib import md5
+    data = request.get_json(silent=True)
+    if data is None:
+        return jsonify({'error': 'Not a JSON'}), 400
+
+    email = data.get('email', None)
+    username = data.get('username', None)
+    password = data.get('password', None)
+
+    if password is None:
+        abort(404)
+
+    if email is not None:
+        user = storage.match(User, match={'email': email})
+    if username is not None:
+        user = storage.match(User, match={'username': username})
+
+    if user.password == md5(password.encode()).hexdigest():
+        session['id'] = user.id
+        session['email'] = user.email
+        session['username'] = user.username
+        return jsonify(user.to_dict())
+    abort(404)
+
+
+@app_views.route('/logout', methods=['POST'], strict_slashes=False)
+def logout():
+    """Clears active user's session"""
+    session.clear()
     return jsonify({}), 200
