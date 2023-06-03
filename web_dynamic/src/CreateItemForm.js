@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateItemForm = () => {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -44,6 +46,8 @@ const CreateItemForm = () => {
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
+      alert("Item created")
+        navigate("/")
   };
 
   return (
