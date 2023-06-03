@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,17 +11,34 @@ const CreateAccount = () => {
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
-    // create account logic here
-    console.log(
-      "Creating account with:",
-      firstName,
-      lastName,
-      username,
-      email,
-      password
-    );
-    // Redirect to login page after creating account
-    navigate("/Login");
+    console.log(firstname, lastname, username, password, email)
+    fetch("http://localhost:5001/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "firstname": firstname,
+        "lastname": lastname,
+        "username": username,
+        "email": email,
+        "password": password
+      })
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create an account.");
+        }
+  
+        // Account created successfully
+        console.log("Account created successfully");
+  
+        // Redirect to login page after creating account
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Error creating account:", error);
+      });
   };
 
   return (
@@ -35,7 +52,7 @@ const CreateAccount = () => {
                 type="text"
                 className="form-control"
                 placeholder="First Name"
-                value={firstName}
+                value={firstname}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
@@ -45,7 +62,7 @@ const CreateAccount = () => {
                 type="text"
                 className="form-control"
                 placeholder="Last Name"
-                value={lastName}
+                value={lastname}
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
