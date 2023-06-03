@@ -10,6 +10,7 @@ Environment="CMS_MYSQL_USER=cms_dev"
 Environment="CMS_MYSQL_PWD=cms_dev_pwd"
 Environment="CMS_MYSQL_HOST=localhost"
 Environment="CMS_MYSQL_DB=cms_dev_db"
+Environment="API_SECRET_KEY=replace_key_here"
 StandardError=file:/tmp/cms-error.log
 StandardOutput=file:/tmp/cms-access.log
 
