@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
+import global from "../../data/global.json";
 
 export default function NavBar() {
   const [categories, setCategories] = useState([]);
@@ -61,7 +62,7 @@ export default function NavBar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <span className="logo-text">clearMySpace</span>
+          <span className="logo-text">{global.brand.name}</span>
         </Link>
         <button
           className="navbar-toggler"
