@@ -1,15 +1,14 @@
 .logo-text {
-    font-family: 'Arial', sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-    background-image: linear-gradient(45deg, #ff6b6b, #5563de);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  font-family: "Arial", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  background-image: linear-gradient(45deg, #ff6b6b, #5563de);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-
- /* NavBar.css */
+/* NavBar.css */
 
 .navbar {
   background-color: #343a40; /* Dark color for the navbar */
@@ -35,4 +34,3 @@
 .logo-text {
   font-size: 2.5rem;
 }
-

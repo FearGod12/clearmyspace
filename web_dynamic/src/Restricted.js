@@ -1,5 +1,5 @@
-import CreateItemForm from './CreateItemForm';
-import withAuthentication from './withAuthentication';
+import CreateItemForm from "./pages/CreateItemForm";
+import withAuthentication from "./utils/withAuthentication";
 
 const CreateItem = withAuthentication(CreateItemForm);
 
