@@ -103,15 +103,24 @@ class DBStorage:
             return getattr(obj, attr, None)
         return self.all(cls).get(cls.__name__ + '.' + id, None)
 
-    def match(self, cls, match={}):
+    def match(self, cls, match={}, all=False):
         """
         Returns a `obj` of `cls` with a matching list
         of attributes
         """
         if cls not in classes or len(match) == 0:
             return None
+        results = []
         for key, value in match.items():
-            obj = self.__session.query(cls).filter(
-                getattr(cls, key) == value).first()
-            if obj is not None:
-                return obj
+            if all is False:
+                obj = self.__session.query(cls).filter(
+                    getattr(cls, key) == value).first()
+                if obj is not None:
+                    return obj
+            else:
+                obj = self.__session.query(cls).filter(
+                    getattr(cls, key) == value).all()
+                if obj is not None:
+                    results.extend(obj)
+                    obj = results[:]
+        return obj
