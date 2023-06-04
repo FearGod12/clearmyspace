@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
-import "./NavBar.css";
+import "./styles.css";
+import global from "../../data/global.json";
 
-function NavBar() {
+export default function NavBar() {
   const [categories, setCategories] = useState([]);
   const [states, setStates] = useState([]);
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function NavBar() {
 
         // Remove token from local storage
         localStorage.removeItem("token");
-        alert("logout successful")
+        alert("logout successful");
 
         navigate("/"); // Redirect to the home page
       })
@@ -61,7 +62,7 @@ function NavBar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <span className="logo-text">clearMySpace</span>
+          <span className="logo-text">{global.brand.name}</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -146,9 +147,7 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <button onClick={handleLogout}>
-                Logout
-              </button>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>
@@ -156,5 +155,3 @@ function NavBar() {
     </nav>
   );
 }
-
-export default NavBar;

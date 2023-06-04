@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './NavBar';
-import LoginForm from './LoginForm';
-import CreateAccount from './CreateAccount';
-import ItemList from './ItemsList';
-import CreateItem from './Restricted';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/navbar";
+import LoginForm from "./components/LoginForm";
+import CreateAccount from "./components/CreateAccount";
+import ItemList from "./components/ItemsList";
+import CreateItem from "./Restricted";
 
 function App() {
   return (
