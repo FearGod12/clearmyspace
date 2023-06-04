@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
 import CreateAccount from "./components/CreateAccount";
-import ItemList from "./components/ItemsList";
-import CreateItem from "./Restricted";
+import { CreateItem } from "./Restricted";
 
 import Home from "./pages/home";
 

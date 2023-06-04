@@ -27,6 +27,17 @@ def create_item():
             return jsonify({'error': 'Missing data: ' + attr}), 400
 
     item = Item(**data)
+
+    # get requests' image files
+    files = request.files.getlist('files')
+    for file in files:
+        if file.filename == '':
+            continue
+        ext = '.' + file.filename.split('.')[-1]
+        # todo: validate image format
+        from os import makedirs
+        makedirs('data/images', exist_ok=True)
+        file.save('data/images/' + item.id + ext)
     item.save()
     return jsonify(item.to_dict()), 201
 
