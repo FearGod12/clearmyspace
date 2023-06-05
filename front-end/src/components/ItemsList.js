@@ -13,17 +13,21 @@ const ItemList = () => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row g-4">
         {items.map((item) => (
           <div key={item.id} className="col-md-4">
             <div className="card">
-              <img src={item.images} className="card-img-top" alt={item.name} />
+              <div
+                className="card-img-top"
+                style={{ height: "10rem", backgroundColor: "#ddd" }}
+              ></div>
               <div className="card-body">
                 <h6 className="card-title">{item.name}</h6>
-                <small className="card-text">{item.description}</small>
+                <small className="card-text text-muted">
+                  {item.description}
+                </small>
                 <p className="card-text">
-                  {global.currency}
-                  {Number(item.price).toLocaleString()}
+                  {global.currency} {Number(item.price).toLocaleString()}
                 </p>
               </div>
             </div>

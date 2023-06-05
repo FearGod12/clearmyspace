@@ -5,7 +5,8 @@ import LoginForm from "./components/LoginForm";
 import CreateAccount from "./components/CreateAccount";
 import { CreateItem } from "./Restricted";
 
-import Home from "./pages/home";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/createitem" element={<CreateItem />} />
           </Routes>
+          <Footer />
         </Router>
       </div>
     </div>
