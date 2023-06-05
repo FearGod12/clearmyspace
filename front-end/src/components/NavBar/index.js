@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
-import "./styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import global from "../../data/global.json";
+import "./styles.css"; // Import the custom styles
 
 export default function NavBar() {
   const [categories, setCategories] = useState([]);
   const [states, setStates] = useState([]);
+  const [showOverall, setShowOverall] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
+  const [showStates, setShowStates] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,87 +71,91 @@ export default function NavBar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={() => setShowOverall(!showOverall)}
         >
-          <span className="navbar-toggler-icon"></span>
+          <FontAwesomeIcon icon={faBars} className="large-icon" />
         </button>
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
+        <div className="collapse navbar-collapse justify-content-end drop">
+          <ul className="navbar-nav">
             <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="categoriesDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+              <button
+                className="nav-link btn"
+                onClick={() => setShowOverall(!showOverall)}
               >
-                Categories
-              </Link>
+                <FontAwesomeIcon icon={faBars} />
+              </button>
               <ul
-                className="dropdown-menu"
-                aria-labelledby="categoriesDropdown"
+                className={`dropdown-menu dropdown-overall ${showOverall ? "show" : ""}`}
               >
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <Link className="dropdown-item" to="#">
-                      {category.name}
-                    </Link>
-                  </li>
-                ))}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item dropdown">
+                  <button
+                    className="nav-link dropdown-toggle"
+                    onClick={() => setShowCategories(!showCategories)}
+                  >
+                    Categories
+                  </button>
+                  <ul
+                    className={`dropdown-menu states dropdown-categories ${
+                      showCategories ? "show" : ""
+                    }`}
+                  >
+                    {categories.map((category) => (
+                      <li key={category.id}>
+                        <Link className="dropdown-item" to="#">
+                          {category.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="nav-item dropdown">
+                  <button
+                    className="nav-link dropdown-toggle"
+                    onClick={() => setShowStates(!showStates)}
+                  >
+                    State
+                  </button>
+                  <ul
+                    className={`dropdown-menu states dropdown-states ${
+                      showStates ? "show" : ""
+                    }`}
+                  >
+                    {states.map((state) => (
+                      <li key={state.id}>
+                        <Link className="dropdown-item" to="#">
+                          {state.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="nav-item">
+                  <Link to="/Login" className="nav-link">
+                    Sign-up/Sign-in
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to={{
+                      pathname: "/CreateItem",
+                      state: { categories: categories },
+                    }}
+                    className="nav-link"
+                  >
+                    Create New Item
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button onClick={handleLogout} className="nav-link">
+                    Logout
+                  </button>
+                </li>
               </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="stateDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                State
-              </Link>
-              <ul className="dropdown-menu" aria-labelledby="stateDropdown">
-                {states.map((state) => (
-                  <li key={state.id}>
-                    <Link className="dropdown-item" to="#">
-                      {state.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-            <li className="nav-item">
-              <Link to="/Login" className="nav-link">
-                Login/Create Account
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to={{
-                  pathname: "/CreateItem",
-                  state: { categories: categories },
-                }}
-                className="nav-link"
-              >
-                Create New Item
-              </Link>
-            </li>
-            <li className="nav-item">
-              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>

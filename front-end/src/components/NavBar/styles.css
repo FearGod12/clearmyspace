@@ -1,4 +1,12 @@
-.logo-text {
+/* Navbar */
+.navbar {
+  background-color: #343a40; /* Dark color for the navbar */
+  
+}
+
+/* Navbar brand */
+.navbar-brand {
+  color: #ffffff; /* White color for the navbar brand */
   font-family: "Arial", sans-serif;
   font-size: 32px;
   font-weight: bold;
@@ -8,29 +16,45 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* NavBar.css */
-
-.navbar {
-  background-color: #343a40; /* Dark color for the navbar */
+/* Large icon */
+.large-icon {
+  font-size: 2.5rem;
 }
 
-.navbar-brand {
-  color: #ffffff; /* White color for the navbar brand */
-  font-weight: bold;
-}
-
-.nav-link {
-  color: #ffffff; /* White color for the nav links */
-}
-
+/* Dropdowns */
 .dropdown-menu {
   background-color: #343a40; /* Dark color for the dropdown menu */
 }
 
 .dropdown-item {
   color: #ffffff; /* White color for the dropdown items */
+  font-weight: bold;
 }
 
-.logo-text {
-  font-size: 2.5rem;
+.dropdown-item:hover {
+  background-color: #5a5e64;
+}
+
+/* Nav link */
+.nav-link {
+  color: #ffffff; /* White color for the nav links */
+}
+
+.nav-link:hover {
+  background-color: #5a5e64;
+}
+
+/* Right-align dropdowns */
+.dropdown-overall,
+.dropdown-categories,
+.dropdown-states {
+  right: 12px;
+}
+
+/* Darken the dropdown box */
+.drop .dropdown-menu {
+  background-color: #343a40; /* Dark color for the opened dropdown */
+}
+.dropdown-menu .states {
+  background-color: azure;
 }
