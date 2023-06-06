@@ -38,9 +38,7 @@ const ItemPreview = () => {
   }
 
   const handleAddToCart = () => {
-    // Implement the logic for adding the item to the cart
-    // You can use a state management library or your preferred method
-    // Here, we're just logging a message to the console
+    //
     console.log("Item added to cart:", item);
   };
 
