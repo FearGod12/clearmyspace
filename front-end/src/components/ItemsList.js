@@ -6,7 +6,7 @@ const ItemList = () => {
 
   useEffect(() => {
     // Fetch items from the API
-    fetch("http://localhost:5001/api/v1/items")
+    fetch(global.base_api + "items")
       .then((response) => response.json())
       .then((data) => setItems(data));
   }, []);

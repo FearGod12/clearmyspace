@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import global from "../data/global.json";
 
 const CreateItemForm = () => {
   const [categories, setCategories] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    category_id: '',
-    price: '',
-    images: '',
+    name: "",
+    description: "",
+    category_id: "",
+    price: "",
+    images: "",
   });
 
   useEffect(() => {
@@ -20,11 +21,11 @@ const CreateItemForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/v1/categories');
+      const response = await fetch(global.base_api + "categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
@@ -36,18 +37,18 @@ const CreateItemForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5001/api/v1/items', {
-      method: 'POST',
+    fetch(global.base_api + "items", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
-      alert("Item created")
-        navigate("/")
+    alert("Item created");
+    navigate("/");
   };
 
   return (

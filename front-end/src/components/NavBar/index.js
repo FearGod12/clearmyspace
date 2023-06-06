@@ -20,7 +20,7 @@ export default function NavBar() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/v1/categories");
+      const response = await fetch(global.base_api + "categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -30,7 +30,7 @@ export default function NavBar() {
 
   const fetchStates = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/v1/states");
+      const response = await fetch(global.base_api + "states");
       const data = await response.json();
       setStates(data);
     } catch (error) {
@@ -40,7 +40,7 @@ export default function NavBar() {
 
   const handleLogout = () => {
     // Make an API call to log out the user
-    fetch("http://localhost:5001/api/v1/logout", {
+    fetch(global.base_api + "logout", {
       method: "POST",
     })
       .then((response) => {
@@ -85,7 +85,9 @@ export default function NavBar() {
                 <FontAwesomeIcon icon={faBars} />
               </button>
               <ul
-                className={`dropdown-menu dropdown-overall ${showOverall ? "show" : ""}`}
+                className={`dropdown-menu dropdown-overall ${
+                  showOverall ? "show" : ""
+                }`}
               >
                 <li className="nav-item">
                   <Link className="nav-link" to="/">

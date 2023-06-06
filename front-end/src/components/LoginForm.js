@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import global from "../data/global.json";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     // Make an API call to your server with the login credentials
-    fetch('http://localhost:5001/api/v1/login', {
-      method: 'POST',
+    fetch(global.base_api + "login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username,
@@ -22,28 +23,28 @@ const LoginForm = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to log in.');
+          throw new Error("Failed to log in.");
         }
 
         // Login successful
-        console.log('Logged in successfully');
+        console.log("Logged in successfully");
         return response.json();
       })
       .then((data) => {
-        const token = data.id; 
-        console.log(token)  // Assuming the session['id'] is the token
-        localStorage.setItem('token', token); // Store the token in localStorage
-        alert("login successful")
-        navigate('/');
+        const token = data.id;
+        console.log(token); // Assuming the session['id'] is the token
+        localStorage.setItem("token", token); // Store the token in localStorage
+        alert("login successful");
+        navigate("/");
       })
       .catch((error) => {
-        console.error('Error logging in:', error);
+        console.error("Error logging in:", error);
       });
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card" style={{ width: '400px', height: '350px' }}>
+      <div className="card" style={{ width: "400px", height: "350px" }}>
         <div className="card-body d-flex flex-column justify-content-center">
           <h1 className="card-title text-center mb-4">Login</h1>
           <form id="login-form" onSubmit={handleLogin}>
