@@ -1,167 +1,56 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 import global from "../../data/global.json";
 import "./styles.css"; // Import the custom styles
+import { FaUserAlt } from "react-icons/fa";
 
 export default function NavBar() {
-  const [categories, setCategories] = useState([]);
-  const [states, setStates] = useState([]);
-  const [showOverall, setShowOverall] = useState(false);
-  const [showCategories, setShowCategories] = useState(false);
-  const [showStates, setShowStates] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchCategories();
-    fetchStates();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(global.base_api + "categories");
-      const data = await response.json();
-      setCategories(data);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
-
-  const fetchStates = async () => {
-    try {
-      const response = await fetch(global.base_api + "states");
-      const data = await response.json();
-      setStates(data);
-    } catch (error) {
-      console.error("Error fetching states:", error);
-    }
-  };
-
-  const handleLogout = () => {
-    // Make an API call to log out the user
-    fetch(global.base_api + "logout", {
-      method: "POST",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to log out.");
-        }
-
-        // Logout successful
-        console.log("Logged out successfully");
-
-        // Remove token from local storage
-        localStorage.removeItem("token");
-        alert("logout successful");
-
-        navigate("/"); // Redirect to the home page
-      })
-      .catch((error) => {
-        console.error("Error logging out:", error);
-      });
-  };
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
           <span className="logo-text">{global.brand.name}</span>
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setShowOverall(!showOverall)}
-        >
-          <FontAwesomeIcon icon={faBars} className="large-icon" />
-        </button>
-        <div className="collapse navbar-collapse justify-content-end drop">
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <button
-                className="nav-link btn"
-                onClick={() => setShowOverall(!showOverall)}
-              >
-                <FontAwesomeIcon icon={faBars} />
-              </button>
-              <ul
-                className={`dropdown-menu dropdown-overall ${
-                  showOverall ? "show" : ""
-                }`}
-              >
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item dropdown">
-                  <button
-                    className="nav-link dropdown-toggle"
-                    onClick={() => setShowCategories(!showCategories)}
-                  >
-                    Categories
-                  </button>
-                  <ul
-                    className={`dropdown-menu states dropdown-categories ${
-                      showCategories ? "show" : ""
-                    }`}
-                  >
-                    {categories.map((category) => (
-                      <li key={category.id}>
-                        <Link className="dropdown-item" to="#">
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="nav-item dropdown">
-                  <button
-                    className="nav-link dropdown-toggle"
-                    onClick={() => setShowStates(!showStates)}
-                  >
-                    State
-                  </button>
-                  <ul
-                    className={`dropdown-menu states dropdown-states ${
-                      showStates ? "show" : ""
-                    }`}
-                  >
-                    {states.map((state) => (
-                      <li key={state.id}>
-                        <Link className="dropdown-item" to="#">
-                          {state.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="nav-item">
-                  <Link to="/Login" className="nav-link">
-                    Sign-up/Sign-in
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to={{
-                      pathname: "/CreateItem",
-                      state: { categories: categories },
-                    }}
-                    className="nav-link"
-                  >
-                    Create New Item
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <button onClick={handleLogout} className="nav-link">
-                    Logout
-                  </button>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <Toggler />
       </div>
     </nav>
+  );
+}
+
+function Toggler() {
+  return (
+    <>
+      <div className="dropdown">
+        <button
+          className="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <FaUserAlt className="nav-btn-icon" /> {"Profile"}
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a className="dropdown-item" href="#">
+              Action
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Another action
+            </a>
+          </li>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Something else here
+            </a>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
