@@ -61,4 +61,7 @@ class BaseModel:
         for item in ['created_at', 'updated_at']:
             if obj.get(item):
                 obj.update({item: str(obj.get(item).strftime(__pstr))})
+        for item in ['user']:
+            if getattr(self, item, None):
+                obj.update({item: getattr(self, item).to_dict()})
         return obj
