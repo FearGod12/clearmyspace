@@ -32,8 +32,6 @@ const LoginForm = () => {
         if (!response.ok) {
           throw new Error("Failed to log in.");
         }
-        const headers = response.headers;
-        console.log(JSON.stringify(response.headers));
         return response.json();
       })
       .then((data) => {
