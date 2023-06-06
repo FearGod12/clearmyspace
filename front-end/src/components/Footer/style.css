@@ -1,7 +1,72 @@
 @import url(../../styles/root.css);
 
-footer {
-  height: 12rem;
-  margin-top: 5rem;
-  background-color: #343a40;
+/* Footer */
+.footer {
+  background-color: #333;
+  padding: 40px 0;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+.footer-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-icon-link {
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.social-icon {
+  vertical-align: middle;
+}
+
+/* Additional Styling */
+
+.footer-column:not(:last-child) {
+  margin-right: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+  
+  .footer-column:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
 }
