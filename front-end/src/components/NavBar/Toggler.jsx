@@ -54,17 +54,17 @@ export default function Toggler() {
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/@me">
               Profile
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/@me/purchases">
               Purchases
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="#">
+            <Link className="dropdown-item" to="/@me/listings">
               Listings
             </Link>
           </li>

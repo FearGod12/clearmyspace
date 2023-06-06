@@ -8,7 +8,9 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(global.base_api + "@me")
+    fetch(global.base_api + "@me", {
+      credentials: "include",
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("No current session");

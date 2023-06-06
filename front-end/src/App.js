@@ -8,6 +8,7 @@ import NotFound from "./pages/404";
 import ItemPreview from "./components/ItemsPreview";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/createitem" element={<CreateItem />} />
-            <Route path="/item/:itemId" element={<ItemPreview />} /> 
+            <Route path="/item/:itemId" element={<ItemPreview />} />
+            <Route path="/@me" element={<Profile />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

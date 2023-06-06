@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import global from "../data/global.json";
 
@@ -6,6 +6,13 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      navigate("/");
+    }
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,7 +32,8 @@ const LoginForm = () => {
         if (!response.ok) {
           throw new Error("Failed to log in.");
         }
-        // Login successful
+        const headers = response.headers;
+        console.log(JSON.stringify(response.headers));
         return response.json();
       })
       .then((data) => {
