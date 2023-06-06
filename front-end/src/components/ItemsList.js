@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import global from "../data/global.json";
+import { FaUserAlt } from "react-icons/fa";
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -17,7 +18,7 @@ const ItemList = () => {
       <div className="row g-4">
         {items.map((item) => (
           <div key={item.id} className="col-md-4">
-            <Link to={`/item/${item.id}`} style={{ textDecoration: "none" }}> 
+            <Link to={`/item/${item.id}`} style={{ textDecoration: "none" }}>
               <div className="card">
                 <div
                   className="card-img-top"
@@ -28,9 +29,17 @@ const ItemList = () => {
                   <small className="card-text text-muted">
                     {item.description}
                   </small>
-                  <p className="card-text">
-                    {global.currency} {Number(item.price).toLocaleString()}
-                  </p>
+                  <div className="d-flex justify-content-between pt-2">
+                    <p className="card-text">
+                      {global.currency} {Number(item.price).toLocaleString()}
+                    </p>
+                    <small className="text-muted">
+                      {item.user.username}
+                      <FaUserAlt
+                        style={{ marginLeft: "5px", fontSize: "10px" }}
+                      />
+                    </small>
+                  </div>
                 </div>
               </div>
             </Link>
