@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import global from "../data/global.json";
 
-export default function ItemPreview () {
+export default function ItemPreview() {
   const { itemId } = useParams(); // Retrieve the item ID from the URL parameter
   const [item, setItem] = useState(null);
   const [reviews, setReviews] = useState([]);
@@ -83,11 +83,7 @@ export default function ItemPreview () {
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="img-fluid"
-          />
+          <img src={item.image} alt={item.name} className="img-fluid" />
         </div>
         <div className="col-md-6">
           <h3>{item.name}</h3>
@@ -121,4 +117,4 @@ export default function ItemPreview () {
       </div>
     </div>
   );
-};
+}

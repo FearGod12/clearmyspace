@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm";
 import CreateAccount from "./components/CreateAccount";
 import { CreateItem } from "./Restricted";
 import NotFound from "./pages/404";
-import ItemPreview from "./components/ItemsPreview";
+import ItemPreview from "./components/ItemPreview";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
@@ -21,7 +21,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/createitem" element={<CreateItem />} />
-            <Route path="/item/:itemId" element={<ItemPreview />} />
+            <Route path="/items/:itemId" element={<ItemPreview />} />
             <Route path="/@me" element={<Profile />} />
 
             <Route path="*" element={<NotFound />} />

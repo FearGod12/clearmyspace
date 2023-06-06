@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ItemList from "../../components/ItemsList";
+import ItemList from "../../components/ItemList";
 import SearchButton from "./search";
 
 export default function Home() {

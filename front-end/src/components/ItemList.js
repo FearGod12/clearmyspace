@@ -18,7 +18,7 @@ const ItemList = () => {
       <div className="row g-4">
         {items.map((item) => (
           <div key={item.id} className="col-md-4">
-            <Link to={`/item/${item.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/items/${item.id}`} style={{ textDecoration: "none" }}>
               <div className="card">
                 <div
                   className="card-img-top"
@@ -34,7 +34,7 @@ const ItemList = () => {
                       {global.currency} {Number(item.price).toLocaleString()}
                     </p>
                     <small className="text-muted">
-                      {item.user_id.username}
+                      {item.user.username}
                       <FaUserAlt
                         style={{ marginLeft: "5px", fontSize: "10px" }}
                       />
