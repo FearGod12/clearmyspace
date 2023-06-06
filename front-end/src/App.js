@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm";
 import CreateAccount from "./components/CreateAccount";
 import { CreateItem } from "./Restricted";
 import NotFound from "./pages/404";
-
+import ItemPreview from "./components/ItemsPreview";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 
@@ -20,6 +20,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/createitem" element={<CreateItem />} />
+            <Route path="/item/:itemId" element={<ItemPreview />} /> 
 
             <Route path="*" element={<NotFound />} />
           </Routes>
