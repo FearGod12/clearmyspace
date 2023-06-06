@@ -59,7 +59,7 @@ export default function ItemPreview () {
           return response.json();
         })
         .then((data) => {
-          setSellerContact(data.contact);
+          setSellerContact(data.email);
         })
         .catch((error) => {
           setError(error.message);
