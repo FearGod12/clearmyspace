@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import global from "../data/global.json";
+import global from "../../data/global.json";
+import "./style.css";
 
 export default function ItemPreview() {
   const { itemId } = useParams(); // Retrieve the item ID from the URL parameter
   const [item, setItem] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [sellerContact, setSellerContact] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -48,29 +48,6 @@ export default function ItemPreview() {
     }
   }, [item]);
 
-  useEffect(() => {
-    // Fetch the seller's contact information based on the user ID
-    if (item && item.user_id) {
-      fetch(`${global.base_api}/users/${item.user_id}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch seller contact");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setSellerContact(data.email);
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
-    }
-  }, [item]);
-
-  const handleAddToCart = () => {
-    console.log("Item added to cart:", item);
-  };
-
   if (loading) {
     return <div>Loading...</div>; // Display a loading message while fetching the item
   }
@@ -81,19 +58,25 @@ export default function ItemPreview() {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row g-5">
         <div className="col-md-6">
-          <img src={item.image} alt={item.name} className="img-fluid" />
+          <div className="item-image"> </div>
         </div>
         <div className="col-md-6">
-          <h3>{item.name}</h3>
-          <p>{item.description}</p>
+          <h2 className="display-6">{item.name}</h2>
           <p>
-            Price: {global.currency} {Number(item.price).toLocaleString()}
+            {global.currency} {Number(item.price).toLocaleString()}
           </p>
-          <button className="btn btn-primary" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
+          <p>{item.description}</p>
+
+          <div className="mt-4">
+            <h5>Seller Contact</h5>
+            <a
+              href={`mailto:${item.user.email}?subject=Regarding ${item.name}&body=Hi, I'm interested in the item "${item.name}".`}
+            >
+              {item.user.email}
+            </a>
+          </div>
         </div>
       </div>
 
@@ -109,15 +92,6 @@ export default function ItemPreview() {
         ) : (
           <p>No reviews available</p>
         )}
-      </div>
-
-      <div className="mt-4">
-        <h5>Seller Contact</h5>
-        <a
-          href={`mailto:${sellerContact}?subject=Regarding ${item.name}&body=Hi, I'm interested in the item "${item.name}".`}
-        >
-          {sellerContact}
-        </a>
       </div>
     </div>
   );
