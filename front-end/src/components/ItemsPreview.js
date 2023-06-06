@@ -117,7 +117,11 @@ export default function ItemPreview () {
 
       <div className="mt-4">
         <h5>Seller Contact</h5>
-        <p>{sellerContact}</p>
+        <a
+          href={`mailto:${sellerContact}?subject=Regarding ${item.name}&body=Hi, I'm interested in the item "${item.name}".`}
+        >
+          {sellerContact}
+        </a>
       </div>
     </div>
   );
