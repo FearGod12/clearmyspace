@@ -25,16 +25,12 @@ const LoginForm = () => {
         if (!response.ok) {
           throw new Error("Failed to log in.");
         }
-
         // Login successful
-        console.log("Logged in successfully");
         return response.json();
       })
       .then((data) => {
-        const token = data.id;
-        console.log(token); // Assuming the session['id'] is the token
-        localStorage.setItem("token", token); // Store the token in localStorage
-        alert("login successful");
+        const user = data;
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/");
       })
       .catch((error) => {

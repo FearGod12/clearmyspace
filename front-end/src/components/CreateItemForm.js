@@ -15,8 +15,8 @@ const CreateItemForm = () => {
 
   useEffect(() => {
     fetchCategories();
-    const userId = localStorage.getItem("token");
-    setFormData((prevFormData) => ({ ...prevFormData, user_id: userId }));
+    const user = JSON.parse(localStorage.getItem("user"));
+    setFormData((prevFormData) => ({ ...prevFormData, user_id: user.id }));
   }, []);
 
   const fetchCategories = async () => {

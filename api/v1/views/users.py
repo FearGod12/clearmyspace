@@ -122,8 +122,4 @@ def current_user():
     user = storage.get(User, session.get('id', None))
     if user is None:
         abort(404)
-
-    obj = user.to_dict()
-    for attr in ['password']:
-        obj.pop(attr, None)
-    return jsonify(obj)
+    return jsonify(user.to_dict())
