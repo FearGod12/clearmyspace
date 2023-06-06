@@ -34,7 +34,7 @@ const ItemList = () => {
                       {global.currency} {Number(item.price).toLocaleString()}
                     </p>
                     <small className="text-muted">
-                      {item.user.username}
+                      {item.user_id.username}
                       <FaUserAlt
                         style={{ marginLeft: "5px", fontSize: "10px" }}
                       />
