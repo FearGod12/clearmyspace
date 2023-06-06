@@ -72,9 +72,9 @@ export default function Toggler() {
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link className="dropdown-item" onClick={logout}>
+            <button className="dropdown-item" onClick={logout}>
               Logout
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
