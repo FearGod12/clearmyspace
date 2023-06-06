@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import global from "../data/global.json";
+import { Link } from "react-router-dom";
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -29,6 +30,9 @@ const ItemList = () => {
                 <p className="card-text">
                   {global.currency} {Number(item.price).toLocaleString()}
                 </p>
+                <Link to={`/item/${item.id}`} className="btn btn-primary">
+                  Preview
+                </Link>
               </div>
             </div>
           </div>
