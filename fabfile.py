@@ -90,7 +90,7 @@ def deploy_api():
     '''starts flask api'''
     copy_and_unpack_archive()
     install_dependencies()
-    upload_service_script()
+    # upload_service_script()
 
 
 def upload_service_script():

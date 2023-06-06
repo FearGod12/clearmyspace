@@ -1,1 +1,7 @@
 @import url("../../styles/root.css");
+
+.user-image {
+  border-radius: 100%;
+  padding: 1.2rem;
+  background-color: var(--bs-gray-200);
+}
