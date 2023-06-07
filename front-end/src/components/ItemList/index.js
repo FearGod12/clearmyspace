@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import global from "../data/global.json";
+import global from "../../data/global.json";
 import { FaUserAlt } from "react-icons/fa";
+import "./style.css";
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -26,7 +27,7 @@ const ItemList = () => {
                 ></div>
                 <div className="card-body">
                   <h6 className="card-title">{item.name}</h6>
-                  <small className="card-text text-muted">
+                  <small className="card-text text-muted item-card-text">
                     {item.description}
                   </small>
                   <div className="d-flex justify-content-between pt-2">

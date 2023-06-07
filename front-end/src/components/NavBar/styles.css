@@ -17,9 +17,13 @@
 }
 
 .navbar-brand span {
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .nav-btn-icon {
   margin-right: 5px;
+}
+
+.dropdown .dropdown-toggle {
+  font-size: 14px;
 }

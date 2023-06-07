@@ -5,6 +5,7 @@ import global from "../../data/global.json";
 import { useNavigate } from "react-router-dom";
 import data from "../../data/user";
 import { FaUserAlt } from "react-icons/fa";
+import ProfileTab from "./ProfileTabs";
 
 export default function Profile() {
   const [user, setUser] = useState(data);
@@ -52,7 +53,7 @@ export default function Profile() {
       <>
         <div className="container">
           <div className="container-fluid my-5">
-            <div className="row g-5">
+            <div className="row g-5 d-flex mb-5">
               <div className="col-8 d-flex">
                 <div className="user-image me-4">
                   <h1 className="display-5">
@@ -60,7 +61,7 @@ export default function Profile() {
                   </h1>
                 </div>
                 <div>
-                  <h5 className="display-6 text-center">
+                  <h5 className="display-6">
                     {user.firstname + " " + user.lastname}
                   </h5>
                   <small>
@@ -74,6 +75,7 @@ export default function Profile() {
                 </Link>
               </div>
             </div>
+            <ProfileTab />
           </div>
         </div>
       </>

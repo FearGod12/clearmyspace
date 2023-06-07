@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import global from "../../data/global.json";
 import "./style.css";
 import NotFound from "../../pages/404";
+import { Link } from "react-router-dom";
+import { FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function ItemPreview() {
   const { itemId } = useParams(); // Retrieve the item ID from the URL parameter
@@ -71,12 +73,23 @@ export default function ItemPreview() {
           <p>{item.description}</p>
 
           <div className="mt-4">
-            <h5>Seller Contact</h5>
-            <a
-              href={`mailto:${item.user.email}?subject=Regarding ${item.name}&body=Hi, I'm interested in the item "${item.name}".`}
-            >
-              {item.user.email}
-            </a>
+            <div>
+              <h5>Contact Seller</h5>
+            </div>
+            <div>
+              <Link
+                className="btn btn-sm btn-secondary me-2"
+                to={`tel:${item.user.phone}`}
+              >
+                <FaPhone />
+              </Link>
+              <Link
+                className="btn btn-sm btn-secondary me-2"
+                to={`mailto:${item.user.email}?subject=Regarding ${item.name}&body=Hi, I'm interested in the item "${item.name}".`}
+              >
+                <FaEnvelope />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
