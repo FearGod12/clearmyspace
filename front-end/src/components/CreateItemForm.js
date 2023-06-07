@@ -21,7 +21,7 @@ const CreateItemForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(global.base_api + "categories");
+      const response = await fetch(global.base_api + "/categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -55,7 +55,7 @@ const CreateItemForm = () => {
     formDataWithImage.append("price", formData.price);
   
     try {
-      const response = await fetch(global.base_api + "items", {
+      const response = await fetch(global.base_api + "/items", {
         method: "POST",
         body: formDataWithImage,
       });
