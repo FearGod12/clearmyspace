@@ -5,6 +5,8 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.item import Item
+from flask import session
+
 
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
@@ -21,7 +23,7 @@ def create_item():
     if data is None:
         return jsonify({'error': 'Not a JSON'}), 400
 
-    attrs = ['name', 'description', 'price', 'user_id', 'category_id']
+    attrs = ['name', 'description', 'price', 'category_id']
     for attr in attrs:
         if attr not in data:
             return jsonify({'error': 'Missing data: ' + attr}), 400
@@ -29,7 +31,7 @@ def create_item():
     item = Item(**data)
 
     # get requests' image files
-    files = request.files.getlist('files')
+    files = request.files.getlist('images')
     for file in files:
         if file.filename == '':
             continue
@@ -37,7 +39,9 @@ def create_item():
         # todo: validate image format
         from os import makedirs
         makedirs('data/images', exist_ok=True)
-        file.save('data/images/' + item.id + ext)
+        image_path = join('data/images', f'{item.id}{ext}')
+        file.save(image_path)
+        item.images = image_path
     item.save()
     return jsonify(item.to_dict()), 201
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 """contains Item class"""
 
 from models.base_model import Base, BaseModel
