@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import global from "../data/global.json";
 
@@ -10,7 +10,7 @@ const CreateItemForm = () => {
     description: "",
     category_id: "",
     price: "",
-    images: "",
+    images: null, // Use null instead of an empty string
   });
 
   useEffect(() => {
@@ -30,26 +30,50 @@ const CreateItemForm = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    const { name, value, type, files } = e.target;
+
+    // Handle file input separately
+    if (type === "file") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: files[0], // Store the file object instead of the fake path
+      }));
+      console.log(files[0]);
+    } else {
+      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch(global.base_api + "items", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-    alert("Item created");
-    navigate("/");
+  
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("image", formData.images);
+    formDataWithImage.append("name", formData.name);
+    formDataWithImage.append("description", formData.description);
+    formDataWithImage.append("category_id", formData.category_id);
+    formDataWithImage.append("price", formData.price);
+  
+    try {
+      const response = await fetch(global.base_api + "items", {
+        method: "POST",
+        body: formDataWithImage,
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("Item created");
+        navigate("/");
+      } else {
+        throw new Error("Error creating item");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Error creating item");
+    }
   };
+  
 
   return (
     <div className="container mt-4">
@@ -133,7 +157,6 @@ const CreateItemForm = () => {
             className="form-control"
             id="images"
             name="images"
-            value={formData.images}
             onChange={handleChange}
             required
             autoComplete="off"
