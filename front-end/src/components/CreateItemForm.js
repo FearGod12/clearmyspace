@@ -46,20 +46,25 @@ const CreateItemForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const formDataWithImage = new FormData();
-    formDataWithImage.append("image", formData.images);
-    formDataWithImage.append("name", formData.name);
-    formDataWithImage.append("description", formData.description);
-    formDataWithImage.append("category_id", formData.category_id);
-    formDataWithImage.append("price", formData.price);
-  
+
+    const requestBody = {
+      images: formData.images,
+      name: formData.name,
+      description: formData.description,
+      category_id: formData.category_id,
+      price: formData.price,
+      user_id: formData.user_id
+    };
+
     try {
       const response = await fetch(global.base_api + "/items", {
         method: "POST",
-        body: formDataWithImage,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -73,12 +78,12 @@ const CreateItemForm = () => {
       alert("Error creating item");
     }
   };
-  
+
 
   return (
     <div className="container mt-4">
       <h2>Create Item</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name:
