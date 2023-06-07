@@ -7,6 +7,7 @@ const CreateAccount = () => {
   const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ const CreateAccount = () => {
         lastname: lastname,
         username: username,
         email: email,
+        phone: phone,
         password: password,
       }),
     })
@@ -85,6 +87,16 @@ const CreateAccount = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="phone"
+                className="form-control"
+                placeholder="0700 000 0000"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>
