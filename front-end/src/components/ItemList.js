@@ -14,7 +14,7 @@ const ItemList = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container-fluid mb-5">
       <div className="row g-4">
         {items.map((item) => (
           <div key={item.id} className="col-md-4">

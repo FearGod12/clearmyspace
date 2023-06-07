@@ -5,7 +5,7 @@ import SearchButton from "./search";
 export default function Home() {
   return (
     <div className="container mt-5">
-      <div className="container-fluid mb-5 text-center py-5">
+      <div className="container-fluid mb-3 text-center py-5">
         <h1 className="display-6" style={{ fontSize: "28px" }}>
           Find Your Treasure: Search & Sell on ClearMySpace!
         </h1>
