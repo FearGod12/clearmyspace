@@ -1,8 +1,10 @@
 @import url(../../styles/root.css);
 
+
 /* Footer */
 .footer {
-  background-color: #333;
+  margin-top: 5rem;
+  background-color: #343a40;
   padding: 40px 0;
   color: #fff;
 }
