@@ -13,22 +13,20 @@ import Profile from "./pages/Profile";
 function App() {
   return (
     <div className="App">
-      <div className="content">
-        <Router>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/createaccount" element={<CreateAccount />} />
-            <Route path="/createitem" element={<CreateItem />} />
-            <Route path="/items/:itemId" element={<Items />} />
-            <Route path="/@me" element={<Profile />} />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
+          <Route path="/createitem" element={<CreateItem />} />
+          <Route path="/items/:itemId" element={<Items />} />
+          <Route path="/@me" element={<Profile />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </Router>
-      </div>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }

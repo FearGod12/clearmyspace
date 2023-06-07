@@ -7,13 +7,12 @@
   color: #fff;
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-
 .footer-column {
   flex: 1;
+}
+
+.footer-column ul li {
+  font-size: 13px;
 }
 
 .footer-heading {
@@ -64,7 +63,7 @@
   .container {
     flex-wrap: wrap;
   }
-  
+
   .footer-column:not(:last-child) {
     margin-right: 0;
     margin-bottom: 30px;
