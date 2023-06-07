@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 import global from "../../data/global.json";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 export default function Profile() {
   const [user, setUser] = useState(data);
+  const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +24,20 @@ export default function Profile() {
       })
       .catch((error) => {
         navigate("/login");
+      });
+
+    fetch(global.base_api + "users/" + user.id + "/reviews")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("No current session");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setReviews(data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
 
@@ -51,6 +67,11 @@ export default function Profile() {
                     <FaUserAlt /> {user.username}
                   </small>
                 </div>
+              </div>
+              <div className="col-4">
+                <Link to="/createitem" className="btn btn-lg btn-primary">
+                  Create Item
+                </Link>
               </div>
             </div>
           </div>

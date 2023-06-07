@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import global from "../../data/global.json";
 import "./style.css";
+import NotFound from "../../pages/404";
 
 export default function ItemPreview() {
   const { itemId } = useParams(); // Retrieve the item ID from the URL parameter
@@ -53,7 +54,7 @@ export default function ItemPreview() {
   }
 
   if (error) {
-    return <div>Error: {error}</div>; // Display an error message if there's an error in fetching data
+    return <NotFound />; // Display an error message if there's an error in fetching data
   }
 
   return (
