@@ -21,7 +21,7 @@ const CreateItemForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(global.base_api + "categories");
+      const response = await fetch(global.base_api + "/categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -37,7 +37,7 @@ const CreateItemForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(global.base_api + "items", {
+    fetch(global.base_api + "/items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

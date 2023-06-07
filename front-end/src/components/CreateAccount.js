@@ -13,8 +13,7 @@ const CreateAccount = () => {
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
-    console.log(firstname, lastname, username, password, email);
-    fetch(global.base_api + "users", {
+    fetch(`${global.base_api}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,11 +31,6 @@ const CreateAccount = () => {
         if (!response.ok) {
           throw new Error("Failed to create an account.");
         }
-
-        // Account created successfully
-        console.log("Account created successfully");
-
-        // Redirect to login page after creating account
         navigate("/login");
       })
       .catch((error) => {

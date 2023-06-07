@@ -12,7 +12,7 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(global.base_api + "users/" + user.id)
+    fetch(global.base_api + "/users/" + user.id)
       .then((response) => {
         if (!response.ok) {
           throw new Error("No current session");
@@ -26,7 +26,7 @@ export default function Profile() {
         navigate("/login");
       });
 
-    fetch(global.base_api + "users/" + user.id + "/reviews")
+    fetch(global.base_api + "/users/" + user.id + "/reviews")
       .then((response) => {
         if (!response.ok) {
           throw new Error("No current session");
