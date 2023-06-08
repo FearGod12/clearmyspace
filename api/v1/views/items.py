@@ -57,7 +57,8 @@ def create_item():
 
 @app_views.route('/data/images/<path:filename>')
 def serve_static(filename):
-    static_folder = '/home/vagrant/clearmyspace/api/v1/data/images'
+    username = os.getenv("USER")
+    static_folder = '/home/' + username + '/clearmyspace/api/v1/data/images'
     try:
         return send_file(f'{static_folder}/{filename}', mimetype='image/png')
     except FileNotFoundError:
@@ -71,6 +72,8 @@ def get_item(item_id):
     item = storage.get(Item, item_id)
     if item is None:
         abort(404)
+    base_url = request.host_url.rstrip('/')
+    item.images = "{}/{}".format(base_url, item.images)
     return jsonify(item.to_dict())
 
 
