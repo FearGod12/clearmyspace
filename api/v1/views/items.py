@@ -47,7 +47,7 @@ def create_item():
         # todo: validate image format
         current_time = datetime.now().strftime("%Y%m%d%H%M%S")
         image_name = f'{current_time}_{item.id}{ext}'
-        image_path = join('data/images', f'{image_name}')
+        image_path = join('api/v1/data/images', f'{image_name}')
         os.makedirs(os.path.dirname(image_path), exist_ok=True)
         file.save(image_path)
         item.images = image_path
