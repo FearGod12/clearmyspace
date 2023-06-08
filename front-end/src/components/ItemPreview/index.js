@@ -61,7 +61,16 @@ export default function ItemPreview() {
     <div className="container">
       <div className="row g-5">
         <div className="col-md-6">
-          <div className="item-image"> </div>
+          <div className="item-image card-img-top"
+          style={{
+            height: "25rem",
+            // width: "20rem",
+            backgroundColor: "#ddd",
+            backgroundImage: `url(${item.images})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}> 
+          </div>
         </div>
         <div className="col-md-6">
           <h2 className="display-6">{item.name}</h2>
