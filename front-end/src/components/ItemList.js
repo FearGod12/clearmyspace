@@ -22,7 +22,13 @@ const ItemList = () => {
               <div className="card">
                 <div
                   className="card-img-top"
-                  style={{ height: "10rem", backgroundColor: "#ddd" }}
+                  style={{
+                    height: "10rem",
+                    backgroundColor: "#ddd",
+                    backgroundImage: `url(${item.images})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 ></div>
                 <div className="card-body">
                   <h6 className="card-title">{item.name}</h6>
