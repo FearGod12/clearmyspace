@@ -46,25 +46,21 @@ const CreateItemForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const requestBody = {
-      images: formData.images,
-      name: formData.name,
-      description: formData.description,
-      category_id: formData.category_id,
-      price: formData.price,
-      user_id: formData.user_id
-    };
-
+  
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("images", formData.images);
+    formDataWithImage.append("name", formData.name);
+    formDataWithImage.append("description", formData.description);
+    formDataWithImage.append("category_id", formData.category_id);
+    formDataWithImage.append("price", formData.price);
+    formDataWithImage.append("user_id", formData.user_id)
+  
     try {
       const response = await fetch(global.base_api + "/items", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
+        body: formDataWithImage,
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -78,6 +74,7 @@ const CreateItemForm = () => {
       alert("Error creating item");
     }
   };
+  
 
 
   return (
