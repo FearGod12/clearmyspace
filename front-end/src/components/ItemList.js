@@ -37,41 +37,45 @@ const ItemList = () => {
       <SearchButton onSearch={handleSearch}/>
       <div className="container-fluid mb-5" style={{ marginTop: "2em" }}>
         <div className="row g-4">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="col-md-4">
-              <Link to={`/items/${item.id}`} style={{ textDecoration: "none" }}>
-                <div className="card">
-                  <div
-                    className="card-img-top"
-                    style={{
-                      height: "22rem",
-                      backgroundColor: "#ddd",
-                      backgroundImage: `url(${item.images})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
-                  <div className="card-body">
-                    <h6 className="card-title">{item.name}</h6>
-                    <small className="card-text text-muted">
-                      {item.description}
-                    </small>
-                    <div className="d-flex justify-content-between pt-2">
-                      <p className="card-text">
-                        {global.currency} {Number(item.price).toLocaleString()}
-                      </p>
-                      <small className="text-muted">
-                        {item.user.username}
-                        <FaUserAlt
-                          style={{ marginLeft: "5px", fontSize: "10px" }}
-                        />
+          {filteredItems.length < 1 ? (
+            <div>No item found</div>
+          ) : (
+            filteredItems.map((item) => (
+              <div key={item.id} className="col-md-4">
+                <Link to={`/items/${item.id}`} style={{ textDecoration: "none" }}>
+                  <div className="card">
+                    <div
+                      className="card-img-top"
+                      style={{
+                        height: "22rem",
+                        backgroundColor: "#ddd",
+                        backgroundImage: `url(${item.images})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    ></div>
+                    <div className="card-body">
+                      <h6 className="card-title">{item.name}</h6>
+                      <small className="card-text text-muted">
+                        {item.description}
                       </small>
+                      <div className="d-flex justify-content-between pt-2">
+                        <p className="card-text">
+                          {global.currency} {Number(item.price).toLocaleString()}
+                        </p>
+                        <small className="text-muted">
+                          {item.user.username}
+                          <FaUserAlt
+                            style={{ marginLeft: "5px", fontSize: "10px" }}
+                          />
+                        </small>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
