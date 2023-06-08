@@ -16,6 +16,9 @@ import os
 def get_items():
     """Returns all items in storage"""
     items = storage.all(Item)
+    base_url = request.host_url.rstrip('/')
+    for item in items.values():
+        item.images = "{}/{}".format(base_url, item.images)
     return jsonify([item.to_dict() for item in items.values()])
 
 
@@ -50,6 +53,15 @@ def create_item():
         item.images = image_path
     item.save()
     return jsonify(item.to_dict()), 201
+
+
+@app.route('/data/images/<path:filename>')
+def serve_static(filename):
+    static_folder = 'data/images'
+    try:
+        return send_from_directory(static_folder, filename)
+    except FileNotFoundError:
+        abort(404)
 
 
 @app_views.route('/items/<item_id>', methods=['GET'],
