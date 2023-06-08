@@ -71,6 +71,8 @@ def get_item(item_id):
     item = storage.get(Item, item_id)
     if item is None:
         abort(404)
+    base_url = request.host_url.rstrip('/')
+    item.images = "{}/{}".format(base_url, item.images)
     return jsonify(item.to_dict())
 
 
