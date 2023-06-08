@@ -1,3 +1,5 @@
 **__pycache__/
 *.swp
 api_versions/
+/data
+/api/v1/data/
