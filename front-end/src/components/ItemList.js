@@ -23,7 +23,7 @@ const ItemList = () => {
                 <div
                   className="card-img-top"
                   style={{
-                    height: "10rem",
+                    height: "22rem",
                     backgroundColor: "#ddd",
                     backgroundImage: `url(${item.images})`,
                     backgroundSize: "cover",

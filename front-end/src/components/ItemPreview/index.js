@@ -11,6 +11,7 @@ export default function ItemPreview() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+
   useEffect(() => {
     // Fetch the item details from the API based on the item ID
     fetch(`${global.base_api}/items/${itemId}`)
@@ -63,8 +64,7 @@ export default function ItemPreview() {
         <div className="col-md-6">
           <div className="item-image card-img-top"
           style={{
-            height: "25rem",
-            // width: "20rem",
+            height: "35rem",
             backgroundColor: "#ddd",
             backgroundImage: `url(${item.images})`,
             backgroundSize: "cover",
@@ -86,6 +86,7 @@ export default function ItemPreview() {
             >
               {item.user.email}
             </a>
+            <p> Phone Number: {item.user.phone}</p>
           </div>
         </div>
       </div>
