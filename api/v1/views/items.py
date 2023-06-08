@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, send_file
 from models import storage
 from models.item import Item
 from flask import session
@@ -16,6 +16,9 @@ import os
 def get_items():
     """Returns all items in storage"""
     items = storage.all(Item)
+    base_url = request.host_url.rstrip('/')
+    for item in items.values():
+        item.images = "{}/{}".format(base_url, item.images)
     return jsonify([item.to_dict() for item in items.values()])
 
 
@@ -52,6 +55,15 @@ def create_item():
     return jsonify(item.to_dict()), 201
 
 
+@app_views.route('/data/images/<path:filename>')
+def serve_static(filename):
+    static_folder = '/home/vagrant/clearmyspace/api/v1/data/images'
+    try:
+        return send_file(f'{static_folder}/{filename}', mimetype='image/png')
+    except FileNotFoundError:
+        abort(404)
+
+
 @app_views.route('/items/<item_id>', methods=['GET'],
                  strict_slashes=False)
 def get_item(item_id):
@@ -59,6 +71,8 @@ def get_item(item_id):
     item = storage.get(Item, item_id)
     if item is None:
         abort(404)
+    base_url = request.host_url.rstrip('/')
+    item.images = "{}/{}".format(base_url, item.images)
     return jsonify(item.to_dict())
 
 
