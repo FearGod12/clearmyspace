@@ -18,7 +18,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     // Make an API call to your server with the login credentials
-    fetch(global.base_api + "login", {
+    fetch(global.base_api + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

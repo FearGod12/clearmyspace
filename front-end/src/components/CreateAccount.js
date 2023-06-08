@@ -7,13 +7,13 @@ const CreateAccount = () => {
   const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
-    console.log(firstname, lastname, username, password, email);
-    fetch(global.base_api + "users", {
+    fetch(`${global.base_api}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,6 +23,7 @@ const CreateAccount = () => {
         lastname: lastname,
         username: username,
         email: email,
+        phone: phone,
         password: password,
       }),
     })
@@ -30,11 +31,6 @@ const CreateAccount = () => {
         if (!response.ok) {
           throw new Error("Failed to create an account.");
         }
-
-        // Account created successfully
-        console.log("Account created successfully");
-
-        // Redirect to login page after creating account
         navigate("/login");
       })
       .catch((error) => {
@@ -85,6 +81,16 @@ const CreateAccount = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="phone"
+                className="form-control"
+                placeholder="0700 000 0000"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>

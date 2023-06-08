@@ -8,7 +8,7 @@ const ItemList = () => {
 
   useEffect(() => {
     // Fetch items from the API
-    fetch(global.base_api + "items")
+    fetch(global.base_api + "/items")
       .then((response) => response.json())
       .then((data) => setItems(data));
   }, []);

@@ -15,6 +15,7 @@ class User(BaseModel, Base):
     firstname = Column(String(255), nullable=False)
     lastname = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False, unique=True)
+    phone = Column(String(15), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
     address = Column(String(255), nullable=True)
     state_id = Column(String(60), ForeignKey('states.id'), nullable=True)
