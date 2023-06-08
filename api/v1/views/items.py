@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 """API routes for Items"""
 
+from datetime import datetime
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.item import Item
 from flask import session
-
+from os.path import join
+from werkzeug.utils import secure_filename
+import os
 
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
@@ -19,27 +22,30 @@ def get_items():
 @app_views.route('/items', methods=['POST'], strict_slashes=False)
 def create_item():
     """Creates Item"""
-    data = request.get_json(silent=True)
-    if data is None:
-        return jsonify({'error': 'Not a JSON'}), 400
+    if 'images' not in request.files:
+        return jsonify({'error': 'No image provided'}), 400
 
-    attrs = ['name', 'description', 'price', 'category_id']
-    for attr in attrs:
-        if attr not in data:
-            return jsonify({'error': 'Missing data: ' + attr}), 400
+    name = request.form.get('name')
+    description = request.form.get('description')
+    price = request.form.get('price')
+    user_id = request.form.get('user_id')
+    category_id = request.form.get('category_id')
+    if not all([name, description, price, category_id]):
+        return jsonify({'error': 'Missing data'}), 400
 
-    item = Item(**data)
-
-    # get requests' image files
+    item = Item(name=name, description=description, price=price,
+                user_id=user_id, category_id=category_id)
     files = request.files.getlist('images')
     for file in files:
         if file.filename == '':
             continue
-        ext = '.' + file.filename.split('.')[-1]
+        filename = secure_filename(file.filename)
+        ext = '.' + filename.rsplit('.', 1)[1].lower()
         # todo: validate image format
-        from os import makedirs
-        makedirs('data/images', exist_ok=True)
-        image_path = join('data/images', f'{item.id}{ext}')
+        current_time = datetime.now().strftime("%Y%m%d%H%M%S")
+        image_name = f'{current_time}_{item.id}{ext}'
+        image_path = join('data/images', f'{image_name}')
+        os.makedirs(os.path.dirname(image_path), exist_ok=True)
         file.save(image_path)
         item.images = image_path
     item.save()

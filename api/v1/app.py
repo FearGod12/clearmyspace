@@ -15,6 +15,7 @@ app.url_map.strict_slashes = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
+
 @app.errorhandler(404)
 def not_found(error):
     """404 Not Found"""
