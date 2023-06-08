@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, send_file
 from models import storage
 from models.item import Item
 from flask import session
@@ -55,11 +55,11 @@ def create_item():
     return jsonify(item.to_dict()), 201
 
 
-@app.route('/data/images/<path:filename>')
+@app_views.route('/data/images/<path:filename>')
 def serve_static(filename):
-    static_folder = 'data/images'
+    static_folder = '/home/vagrant/clearmyspace/api/v1/data/images'
     try:
-        return send_from_directory(static_folder, filename)
+        return send_file(f'{static_folder}/{filename}', mimetype='image/png')
     except FileNotFoundError:
         abort(404)
 
