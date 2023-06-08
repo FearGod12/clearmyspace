@@ -11,6 +11,8 @@ from os.path import join
 from werkzeug.utils import secure_filename
 import os
 
+base_path = "/home/" + os.getenv("USER") + "/cms_data/images"
+
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
 def get_items():
@@ -47,9 +49,9 @@ def create_item():
         # todo: validate image format
         current_time = datetime.now().strftime("%Y%m%d%H%M%S")
         image_name = f'{current_time}_{item.id}{ext}'
-        image_path = join('data/images', f'{image_name}')
-        os.makedirs(os.path.dirname(image_path), exist_ok=True)
-        file.save(image_path)
+        image_path = join('api/v1/data/images', f'{image_name}')
+        os.makedirs(os.path.dirname(base_path), exist_ok=True)
+        file.save(base_path + '/' + image_name)
         item.images = image_path
     item.save()
     return jsonify(item.to_dict()), 201
@@ -57,10 +59,8 @@ def create_item():
 
 @app_views.route('/data/images/<path:filename>')
 def serve_static(filename):
-    username = os.getenv("USER")
-    static_folder = '/home/' + username + '/clearmyspace/api/v1/data/images'
     try:
-        return send_file(f'{static_folder}/{filename}', mimetype='image/png')
+        return send_file(f'{base_path}/{filename}', mimetype='image/png')
     except FileNotFoundError:
         abort(404)
 
