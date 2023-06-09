@@ -1,153 +1,154 @@
+@import url("../../styles/root.css");
+
 .masthead {
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    height: 28rem;
-  }
-  
-  .overlayheader {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../../assets/images/hold2.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
-  .masthead .container {
-    position: relative;
-    z-index: 1;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  .masthead h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 6rem;
-    line-height: 1.2;
-  }
-  
-  .masthead p {
-    font-size: 1.2rem;
-    margin: 0% 5%;
-  }
-  
-  .masthead .btn-primary {
-    font-size: 1.2rem;
-    padding: 0.75rem 2rem;
-    margin-top: 15%;
-  }
-  
-  .masthead .btn-primary:hover {
-    background-color: #5a98f5;
-  }
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 28rem;
+}
 
-  /* ========================================= end of header  */
+header {
+  background-image: url(../../assets/images/hold2.jpg);
+  background-attachment: fixed;
+}
 
-  .features-icons {
-    padding: 80px 0;
-  }
-  
-    .features-icons .features-icons-item .features-icons-icon {
-    width: 100px;
-  }
-  
-  .features-icons .features-icons-item h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
-  
-  .features-icons .features-icons-item p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    font-weight: 400;
-  }
+.overlayheader {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-  /* ================================== next section  */
+.masthead .container {
+  position: relative;
+  z-index: 1;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
 
-  .showcase {
-    padding: 80px 0;
-  }
-  
-  .showcase .showcase-img {
-    position: relative;
-    background-image: url(../../assets/images/buy\ and\ sell.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-  }
-  
-  
-  .showcase .showcase-text h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-  }
-  
-  .showcase .showcase-text p {
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 400;
-  }
-  
-  /* ============================= what people are saying  */
+.masthead h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
 
-  .testimonials {
-    padding: 80px 0;
-  }
-  
-  .testimonial-item {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .testimonial-item img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-  }
-  
-  .testimonial-item h5 {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-  }
-  
-  .testimonial-item p {
-    font-size: 1em;
-  }
+.masthead p {
+  font-size: 1.2rem;
+}
 
-  
-  /* ============================= call to action section  */
+.masthead .btn-primary {
+  font-size: 1.2rem;
+  padding: 0.75rem 2rem;
+}
 
-  .call-to-action {
-    text-align: center;
-    color: black;
-    padding: 80px 0;
-    background-position: center;
-    background-size: cover;
-    margin-bottom: -7%;
-    padding: 15%;
-  }
-    
-  .call-to-action h2 {
-    margin-top: -5%;
-    font-size: 32px;
-    font-weight: bold;
+.masthead .btn-primary:hover {
+  background-color: #5a98f5;
+}
 
-  }
-  
-  .call-to-action p {
-    margin-bottom: 0;
-  }
-  
-  .call-to-action button.btn-primary {
-    font-size: 18px;
-    margin-bottom: 0%;
-  }
-  
+/* ========================================= end of header  */
+
+.features-icons {
+  padding: 80px 0;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  width: 100px;
+}
+
+.features-icons .features-icons-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.features-icons .features-icons-item p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ================================== next section  */
+
+.showcase {
+  padding: 80px 0;
+}
+
+.showcase .showcase-img {
+  position: relative;
+  background-image: url(../../assets/images/buy\ and\ sell.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.showcase .showcase-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.showcase .showcase-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ============================= what people are saying  */
+
+.testimonials {
+  padding: 80px 0;
+}
+
+.testimonial-item {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.testimonial-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.testimonial-item h5 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.testimonial-item p {
+  font-size: 1em;
+}
+
+/* ============================= call to action section  */
+
+.call-to-action {
+  text-align: center;
+  color: black;
+  padding: 80px 0;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: -7%;
+  padding: 15%;
+}
+
+.call-to-action h2 {
+  margin-top: -5%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.call-to-action p {
+  margin-bottom: 0;
+}
+
+.call-to-action button.btn-primary {
+  font-size: 18px;
+  margin-bottom: 0%;
+}
