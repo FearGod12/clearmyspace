@@ -3,6 +3,7 @@ import bgimage from "../../assets/images/ready.jpg";
 import bgimage3 from "../../assets/images/shoppingbag.jpg";
 import bgimage2 from "../../assets/images/cash.jpg";
 import team1 from "../../assets/images/team-1.jpg";
+import team2 from "../../assets/images/team-2.png"
 import testimonial3 from "../../assets/images/testimonials-3.jpg";
 import "./styles.css";
 import { Link } from "react-router-dom";
@@ -177,14 +178,14 @@ const AboutPage = () => {
             <div className="col-lg-6">
               <div className="mx-auto testimonial-item mb-5 mb-lg-0">
                 <img
-                  className="img-fluid rounded-circle mb-3"
-                  src={testimonial3}
+                  className="img-fluid rounded-circle mb-3 bg-dark"
+                  src={team2}
                   alt="..."
                 />
                 <h5> Chukwudi ONYENIKE</h5>
                 <p className="font-weight-light mb-0">Front-end Dveloper</p>
                 <small className="text-muted">
-                  responsible for managing the infrastructure and deployment of
+                  Responsible for managing the infrastructure and deployment of
                   application while also assisting with the backend development.
                 </small>
               </div>
