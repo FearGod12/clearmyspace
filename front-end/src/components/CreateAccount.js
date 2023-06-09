@@ -88,7 +88,7 @@ const CreateAccount = () => {
               <input
                 type="phone"
                 className="form-control"
-                placeholder="0700 000 0000"
+                placeholder="Phone Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
