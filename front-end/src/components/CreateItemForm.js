@@ -1,59 +1,86 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import global from "../data/global.json";
 
 const CreateItemForm = () => {
   const [categories, setCategories] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    category_id: '',
-    price: '',
-    images: '',
+    name: "",
+    description: "",
+    category_id: "",
+    price: "",
+    images: null, // Use null instead of an empty string
   });
 
   useEffect(() => {
     fetchCategories();
-    const userId = localStorage.getItem("token");
-    setFormData((prevFormData) => ({ ...prevFormData, user_id: userId }));
+    const user = JSON.parse(localStorage.getItem("user"));
+    setFormData((prevFormData) => ({ ...prevFormData, user_id: user.id }));
   }, []);
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/v1/categories');
+      const response = await fetch(global.base_api + "/categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    const { name, value, type, files } = e.target;
+
+    // Handle file input separately
+    if (type === "file") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: files[0], // Store the file object instead of the fake path
+      }));
+      console.log(files[0]);
+    } else {
+      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch('http://localhost:5001/api/v1/items', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-      alert("Item created")
-        navigate("/")
+  
+    const formDataWithImage = new FormData();
+    formDataWithImage.append("images", formData.images);
+    formDataWithImage.append("name", formData.name);
+    formDataWithImage.append("description", formData.description);
+    formDataWithImage.append("category_id", formData.category_id);
+    formDataWithImage.append("price", formData.price);
+    formDataWithImage.append("user_id", formData.user_id)
+  
+    try {
+      const response = await fetch(global.base_api + "/items", {
+        method: "POST",
+        body: formDataWithImage,
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        alert("Item created");
+        navigate("/");
+      } else {
+        throw new Error("Error creating item");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Error creating item");
+    }
   };
+  
+
 
   return (
     <div className="container mt-4">
       <h2>Create Item</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name:
@@ -132,7 +159,6 @@ const CreateItemForm = () => {
             className="form-control"
             id="images"
             name="images"
-            value={formData.images}
             onChange={handleChange}
             required
             autoComplete="off"

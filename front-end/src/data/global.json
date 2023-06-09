@@ -1,0 +1,11 @@
+{
+  "brand": {
+    "name": "clearMySpace",
+    "socials": {
+      "facebook": "nil",
+      "linkedin": "nil"
+    }
+  },
+  "currency": "₦",
+  "base_api": "https://www.epicsprint.tech/api/v1"
+}

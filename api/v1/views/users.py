@@ -113,3 +113,13 @@ def logout():
     """Clears active user's session"""
     session.clear()
     return jsonify({}), 200
+
+
+@app_views.route('/@me', methods=['GET'], strict_slashes=False)
+@login_required
+def current_user():
+    """Returns info about the current logged in user"""
+    user = storage.get(User, session.get('id', None))
+    if user is None:
+        abort(404)
+    return jsonify(user.to_dict())

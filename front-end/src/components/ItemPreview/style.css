@@ -1,0 +1,7 @@
+@import url("../../styles/root.css");
+
+.item-image {
+  background-color: var(--bs-gray-200);
+  height: 24rem;
+  border-radius: 5px;
+}

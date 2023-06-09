@@ -1,0 +1,73 @@
+@import url(../../styles/root.css);
+
+
+/* Footer */
+.footer {
+  margin-top: 5rem;
+  background-color: #343a40;
+  padding: 40px 0;
+  color: #fff;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+.footer-column ul li {
+  font-size: 13px;
+}
+
+.footer-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-icon-link {
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.social-icon {
+  vertical-align: middle;
+}
+
+/* Additional Styling */
+
+.footer-column:not(:last-child) {
+  margin-right: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .footer-column:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}

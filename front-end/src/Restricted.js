@@ -3,4 +3,4 @@ import withAuthentication from "./utils/withAuthentication";
 
 const CreateItem = withAuthentication(CreateItemForm);
 
-export default CreateItem;
+export { CreateItem };
