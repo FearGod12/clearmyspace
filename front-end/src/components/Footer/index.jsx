@@ -41,7 +41,7 @@ export default function Footer() {
           <h4 className="footer-heading">About ClearMySpace</h4>
           <ul className="footer-links">
             <li>
-              <Link to="/about-us" className="footer-link">
+              <Link to="/about" className="footer-link">
                 About Us
               </Link>
             </li>

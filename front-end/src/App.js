@@ -9,6 +9,7 @@ import Items from "./pages/Items";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/createitem" element={<CreateItem />} />
           <Route path="/items/:itemId" element={<Items />} />
           <Route path="/@me" element={<Profile />} />
+          <Route path="/about" element={<AboutPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
