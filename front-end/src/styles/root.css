@@ -15,3 +15,11 @@
   --bs-gray-500: #adb5bd;
   --bs-gray-600: #6c757d;
 }
+
+.one-liner {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+}

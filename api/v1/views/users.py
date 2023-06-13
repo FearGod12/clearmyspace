@@ -123,3 +123,13 @@ def current_user():
     if user is None:
         abort(404)
     return jsonify(user.to_dict())
+
+
+@app_views.route('/users/<user_id>/items', methods=['GET'],
+                 strict_slashes=False)
+def get_user_items(user_id):
+    """Return a list Item of a matching User"""
+    items = storage.get(User, user_id, attr='listings')
+    if items is None:
+        abort(404)
+    return jsonify([item.to_dict() for item in items])
