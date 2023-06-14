@@ -7,5 +7,5 @@
     }
   },
   "currency": "₦",
-  "base_api": "https://www.epicsprint.tech/api/v1"
+  "base_api": "http://localhost:5001/api/v1"
 }
