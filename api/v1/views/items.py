@@ -11,7 +11,8 @@ from os.path import join
 from werkzeug.utils import secure_filename
 import os
 
-base_path = "/home/" + os.getenv("USER") + "/cms_data/images"
+# base_path = "/home/" + os.getenv("USER") + "/cms_data/images"
+base_path = "data/cms/images"
 
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
@@ -49,9 +50,10 @@ def create_item():
         # todo: validate image format
         current_time = datetime.now().strftime("%Y%m%d%H%M%S")
         image_name = f'{current_time}_{item.id}{ext}'
-        image_path = join('api/v1/data/images', f'{image_name}')
+        # image_path = join('api/v1/data/images', f'{image_name}')
+        image_path = join('/data/cms/images', f'{image_name}')
         os.makedirs(os.path.dirname(base_path), exist_ok=True)
-        file.save(base_path + '/' + image_name)
+        file.save('/data/cms/images' + '/' + image_name)
         item.images = image_path
     item.save()
     return jsonify(item.to_dict()), 201
