@@ -3,12 +3,12 @@ import bgimage from "../../assets/images/ready.jpg";
 import bgimage3 from "../../assets/images/shoppingbag.jpg";
 import bgimage2 from "../../assets/images/cash.jpg";
 import team1 from "../../assets/images/team-1.jpg";
-import team2 from "../../assets/images/team-2.png"
+import team2 from "../../assets/images/team-2.png";
 import testimonial3 from "../../assets/images/testimonials-3.jpg";
 import "./styles.css";
 import { Link } from "react-router-dom";
 
-const AboutPage = () => {
+const About = () => {
   return (
     <div>
       <header className="text-center text-white masthead">
@@ -211,4 +211,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;

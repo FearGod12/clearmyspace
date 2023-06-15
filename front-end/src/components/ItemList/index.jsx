@@ -42,7 +42,7 @@ const ItemList = () => {
             <div>No item found</div>
           ) : (
             filteredItems.map((item) => (
-              <div key={item.id} className="col-md-4">
+              <div key={item.id} className="col-lg-4 col-md-6">
                 <Link
                   to={`/items/${item.id}`}
                   style={{ textDecoration: "none" }}
@@ -59,12 +59,12 @@ const ItemList = () => {
                       }}
                     ></div>
                     <div className="card-body">
-                      <h6 className="card-title">{item.name}</h6>
-                      <small className="card-text text-muted item-card-text">
+                      <h6 className="card-title one-liner">{item.name}</h6>
+                      <small className="card-text text-muted one-liner">
                         {item.description}
                       </small>
                       <div className="d-flex justify-content-between pt-2">
-                        <p className="card-text">
+                        <p className="card-text one-liner">
                           {global.currency}{" "}
                           {Number(item.price).toLocaleString()}
                         </p>

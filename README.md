@@ -11,6 +11,7 @@ in the exchange process. With ClearMySpace, users can simplify their
 lives, earn extra cash, and promote a more sustainable and
 eco-friendly way of living.
 
+![Image](images/Clear-My-Space.png)
 
 ### TECHNOLOGIES
 
@@ -19,7 +20,6 @@ eco-friendly way of living.
 1. MySQL: relational database management system
 1. SQLAlchemy: Python SQL toolkit and ORM
 1. HTML, CSS javascript, jQuery (and/or ReactJS): front-end
-
 
 Alternative options considered:
 
@@ -39,7 +39,6 @@ Flask is a lightweight and flexible micro-framework that is
 well-suited for small to medium-sized web applications. Additionally,
 we had prior experience with Flask and felt comfortable working with
 it.
-
 
 ### CHALLENGE
 
@@ -68,10 +67,68 @@ buying and selling second-hand items. However, the platform can be
 used by anyone with an internet connection and access to the app or
 website.
 
-
 ### TEAM
 
 1. Team Member 1: Abraham OLAGUNJU - Full-Stack Developer
 1. Team Member 2: Chukwudi ONYENIKE - DevOps Engineer
 
 [Read More About the project here!](https://docs.google.com/document/d/1ADEp8iA4lPIjqcgZSQ1AkKpEK3MMria0KNvj8GMK0mc/edit?usp=sharing)
+
+## Clone the Repository
+
+1. Open your terminal or command prompt.
+1. Change the directory to the location where you want to clone the repository.
+1. Run the following command to clone the repository:
+
+```
+git clone https://github.com/OluwaninsolaAO/clearmyspace.git
+```
+
+1. Wait for the cloning process to complete. Once finished, you will have a local copy of the repository on your machine.
+
+## Install Dependencies
+
+Ensure you have installed the following packages relevant to this project depending on which operating system you are using:
+
+1. MySQL Client
+1. Python3 & pip3
+1. NodeJS
+1. Nginx
+
+Once all the requirements above are satisfied, proceed to installing python's dependencies, use the following command from your terminal at the project's root directory:
+
+```
+pip3 install -r requirements.txt
+```
+
+## Set up MySQL Database with required credentials
+
+To setup and configure MySQL database, user and all required permissions, use the following command from the terminal at the project's root directory:
+
+```
+cat cms_db_user_setup.sql | mysql -u root -p
+```
+
+> !important: it is important to first inspect the sql script and modify all named fields or use the defaults. ;) As the named fields will be part of what will form your environment variables while starting or deploying the application on a server.
+
+> If `root` is not your default mysql username, feel free to update the command.
+
+## Start API flask server
+
+From the project's root directory run the following command to start the Flask server using the following command conatining all necessary and required `environment variables`:
+
+```
+CMS_MYSQL_USER=cms_dev CMS_MYSQL_PWD=cms_dev_pwd CMS_MYSQL_HOST=localhost CMS_MYSQL_DB=cms_dev_db API_SECRET_KEY='af4929f813c57dab0a59c8b5ef21424e22ae6b6b9d2b42545f2026f7db038f33' python3 -m api.v1.app
+```
+
+## Start NodeJS (ReactJS) Application Server
+
+Change your directry to the `front-end` directory, first install all npm dependencies (`npm install`) then start the application (`npm start`)
+
+```
+npm install
+...
+npm start
+```
+
+Enjoy!

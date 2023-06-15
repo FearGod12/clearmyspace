@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import data from "../../data/user";
+import user from "../../data/user";
 import global from "../../data/global.json";
+import api from "../../api";
 
 export default function ProfileTab() {
   return (
@@ -51,7 +52,7 @@ export default function ProfileTab() {
           </button>
         </li>
       </ul>
-      <div className="tab-content" id="myTabContent">
+      <div className="tab-content py-5" id="myTabContent">
         <div
           className="tab-pane fade show active"
           id="listing"
@@ -66,7 +67,25 @@ export default function ProfileTab() {
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          ...
+          <div className="row g-3 align-items-center mb-5">
+            <div className="col-auto">
+              <input
+                className="form-control"
+                type="text"
+                value={user.firstname}
+                placeholder="Firstname"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                className="form-control"
+                type="text"
+                value={user.lastname}
+                placeholder="Firstname"
+              />
+            </div>
+          </div>
+          <button className="btn btn-lg btn-primary">Update Profile</button>
         </div>
         <div
           className="tab-pane fade"
@@ -74,7 +93,25 @@ export default function ProfileTab() {
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          ...
+          <div className="row g-3 align-items-center mb-5">
+            <div className="col-auto">
+              <input
+                className="form-control"
+                type="text"
+                value={user.email}
+                placeholder="Firstname"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                className="form-control"
+                type="text"
+                value={user.phone}
+                placeholder="Firstname"
+              />
+            </div>
+          </div>
+          <button className="btn btn-lg btn-primary">Update Contact</button>
         </div>
       </div>
     </>
@@ -86,24 +123,26 @@ function MyListings() {
 
   useEffect(() => {
     // Fetch items from the API
-    fetch(`${global.base_api}/users/${data.id}/items`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error fetching...");
-        }
-        return response.json();
-      })
-      .then((data) => setItems(data))
-      .catch((error) => {
-        console.error(error);
-      });
+    const fetch_items = async () => {
+      const data = await api
+        .get(`users/${user.id}/items`)
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+          return [];
+        });
+      setItems(data);
+    };
+    fetch_items();
   }, []);
 
   return (
     <div className="container-fluid mb-5">
       <div className="row g-4">
         {items.map((item) => (
-          <div key={item.id} className="col-md-4">
+          <div key={item.id} className="col-lg-4 col-md-6">
             <Link to={`/items/${item.id}`} style={{ textDecoration: "none" }}>
               <div className="card">
                 <div
@@ -111,12 +150,12 @@ function MyListings() {
                   style={{ height: "10rem", backgroundColor: "#ddd" }}
                 ></div>
                 <div className="card-body">
-                  <h6 className="card-title">{item.name}</h6>
-                  <small className="card-text text-muted item-card-text">
+                  <h6 className="card-title one-liner">{item.name}</h6>
+                  <small className="card-text text-muted one-liner">
                     {item.description}
                   </small>
                   <div className="d-flex justify-content-between pt-2">
-                    <p className="card-text">
+                    <p className="card-text one-liner">
                       {global.currency} {Number(item.price).toLocaleString()}
                     </p>
                   </div>

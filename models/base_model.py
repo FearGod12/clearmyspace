@@ -61,7 +61,9 @@ class BaseModel:
         for item in ['created_at', 'updated_at']:
             if obj.get(item):
                 obj.update({item: str(obj.get(item).strftime(__pstr))})
-        for item in ['user']:
-            if getattr(self, item, None):
-                obj.update({item: getattr(self, item).to_dict()})
+        # list of single obj relationship
+        attrs = ['user', 'city', 'state', 'country']
+        for attr in attrs:
+            if getattr(self, attr, None):
+                obj.update({attr: getattr(self, attr).to_dict()})
         return obj
