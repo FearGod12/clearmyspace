@@ -14,7 +14,7 @@ def get_categories():
     return jsonify([category.to_dict() for category in categories.values()])
 
 
-@app_views.route('categories', methods=['POST'],
+@app_views.route('/categories', methods=['POST'],
                  strict_slashes=False)
 def create_category():
     """Create a new Category in Storage"""
@@ -40,7 +40,7 @@ def get_category(category_id):
     return jsonify(category.to_dict())
 
 
-@app_views.route('categories/<category_id>', methods=['PUT'],
+@app_views.route('/categories/<category_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_category(category_id):
     """Updates Category with a matching category_id"""
@@ -50,7 +50,7 @@ def update_category(category_id):
 
     data = request.get_json(silent=True)
     if data is None:
-        return jsonfy({'error': 'Not a JSON'}), 400
+        return jsonify({'error': 'Not a JSON'}), 400
 
     if 'id' in data:
         data.pop('id')
@@ -62,7 +62,7 @@ def update_category(category_id):
     return jsonify(category.to_dict())
 
 
-@app_views.route('categories/<category_id>', methods=['DELETE'],
+@app_views.route('/categories/<category_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_category(category_id):
     """Deletes Category with a matching category_id"""
@@ -75,7 +75,7 @@ def delete_category(category_id):
     return jsonify({})
 
 
-@app_views.route('categories/<category_id>/items', methods=['GET'],
+@app_views.route('/categories/<category_id>/items', methods=['GET'],
                  strict_slashes=False)
 def get_category_items(category_id):
     """Return a list of Item of the Category with a matching

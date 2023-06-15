@@ -16,7 +16,6 @@ export default function Home() {
           perfect items they've been looking for, while sellers can effortlessly
           connect with interested buyers.
         </small>
-      
       </div>
       <ItemList />
     </div>
