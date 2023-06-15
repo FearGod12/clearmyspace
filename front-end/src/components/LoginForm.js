@@ -5,6 +5,7 @@ import global from "../data/global.json";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isPending, setIsPending] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const LoginForm = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setIsPending(true)
 
     // Make an API call to your server with the login credentials
     fetch(global.base_api + "/login", {
@@ -29,6 +31,7 @@ const LoginForm = () => {
       }),
     })
       .then((response) => {
+        setIsPending(false)
         if (!response.ok) {
           throw new Error("Failed to log in.");
         }
@@ -73,6 +76,7 @@ const LoginForm = () => {
             <button type="submit" className="btn btn-primary btn-block">
               Login
             </button>
+            {isPending && <div> Loading...</div>}
           </form>
           <p className="text-center mt-3">
             Don't have an account? <Link to="/createaccount">Create one</Link>.
