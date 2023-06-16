@@ -57,38 +57,38 @@ export default function ItemPreview(props) {
   console.log(item.images);
   
   
-  useEffect(() => {
-      // Fetch the item details from the API based on the item ID
-      fetch(`${global.image_url}/${item.images}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch item");
-          }
-          return response.json();
-        })
-        .then((data) => {
-         const image = data;
+  // useEffect(() => {
+  //     // Fetch the item details from the API based on the item ID
+  //     fetch(`${global.image_url}/${item.images}`)
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error("Failed to fetch item");
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //        const image = data;
           
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(error.message);
-          setLoading(false);
-        });
-    }, [item.images]);
-    if (loading) {
-    return <div 
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100px",
-      fontSize: "1.5rem",
-      color: "#888",
-    }}>Loading...</div>; // Display a loading message while fetching the item
-  }
+  //         setLoading(false);
+  //       })
+  //       .catch((error) => {
+  //         setError(error.message);
+  //         setLoading(false);
+  //       });
+  //   }, [item.images]);
+  //   if (loading) {
+  //   return <div 
+  //   style={{
+  //     display: "flex",
+  //     justifyContent: "center",
+  //     alignItems: "center",
+  //     height: "100px",
+  //     fontSize: "1.5rem",
+  //     color: "#888",
+  //   }}>Loading...</div>; // Display a loading message while fetching the item
+  // }
 
-    if (!item){
+    if (error || !item){
       return <NotFound />; // Display an error message if there's an error in fetching data
     }
 
@@ -101,7 +101,7 @@ export default function ItemPreview(props) {
             style={{
               height: "35rem",
               backgroundColor: "#ddd",
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${global.image_url}/${item.images})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
