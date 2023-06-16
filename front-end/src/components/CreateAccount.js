@@ -89,11 +89,13 @@ const CreateAccount = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              </div>
+              <div className="mb-3">
               <input
                 type="text"
                 className="form-control"
                 placeholder="address"
-                value={username}
+                value={address}
                 onChange={(e) => setAdress(e.target.value)}
                 required
               />
