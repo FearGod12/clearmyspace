@@ -19,9 +19,10 @@ base_path = "/home/" + os.getenv("USER") + "/cms_data/images"
 def get_items():
     """Returns all items in storage"""
     items = storage.all(Item)
-    base_url = request.host_url.rstrip('/')
-    for item in items.values():
-        item.images = "{}/{}".format(base_url, item.images)
+    # base_url = request.host_url.rstrip('/')
+    # for item in items.values():
+        # item.images = "{}/{}".format(base_url, item.images)
+        #item.images = "www.chukky.tech/{}".format(item.images)
     return jsonify([item.to_dict() for item in items.values()])
 
 
@@ -51,7 +52,7 @@ def create_item():
         current_time = datetime.now().strftime("%Y%m%d%H%M%S")
         image_name = f'{current_time}_{item.id}{ext}'
         # image_path = join('api/v1/data/images', f'{image_name}')
-        image_path = join('api/v1{base_path}', f'{image_name}')
+        image_path = join(f'api/v1/data/cms/images/', f'{image_name}')
         os.makedirs(os.path.dirname(base_path), exist_ok=True)
         file.save(base_path + '/' + image_name)
         item.images = image_path
