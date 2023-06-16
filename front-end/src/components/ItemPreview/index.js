@@ -11,6 +11,7 @@ export default function ItemPreview(props) {
   const location = useLocation();
   const { item } = location.state;
   const [reviews, setReviews] = useState([]);
+  const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
  
@@ -54,26 +55,43 @@ export default function ItemPreview(props) {
     }
   }, [item]);
 
-  // if (loading) {
-  //   return <div 
-  //   style={{
-  //     display: "flex",
-  //     justifyContent: "center",
-  //     alignItems: "center",
-  //     height: "100px",
-  //     fontSize: "1.5rem",
-  //     color: "#888",
-  //   }}>Loading...</div>; // Display a loading message while fetching the item
-  // }
+  
+  
+  useEffect(() => {
+      // Fetch the item details from the API based on the item ID
+      fetch(`${global.image_url}/${item.images}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch item");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setImage(data);
+          
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error.message);
+          setLoading(false);
+        });
+    }, [item.images]);
+    if (loading) {
+    return <div 
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100px",
+      fontSize: "1.5rem",
+      color: "#888",
+    }}>Loading...</div>; // Display a loading message while fetching the item
+  }
 
-  if (error || !item){
-    return <NotFound />; // Display an error message if there's an error in fetching data
-  }
-  // Check if the URL contains "/items" and remove it if present
-  if (item.images && item.images.includes("/items")) {
-    item.images = item.images.replace("/items", "");
-  }
-  console.log(item.images);
+    if (!item){
+      return <NotFound />; // Display an error message if there's an error in fetching data
+    }
+    console.log(item.images);
 
   return (
     <div className="container">
@@ -84,7 +102,7 @@ export default function ItemPreview(props) {
             style={{
               height: "35rem",
               backgroundColor: "#ddd",
-              backgroundImage: `url(${item.images})`,
+              backgroundImage: `url(${image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}

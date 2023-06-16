@@ -7,5 +7,7 @@
     }
   },
   "currency": "₦",
-  "base_api": "https://www.chukky.tech/api/v1"
+  "base_api": "https://www.chukky.tech/api/v1",
+  "image_url": "https://www.chukky.tech/"
+
 }
