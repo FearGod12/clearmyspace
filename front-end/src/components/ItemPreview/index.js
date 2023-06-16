@@ -11,7 +11,6 @@ export default function ItemPreview(props) {
   const location = useLocation();
   const { item } = location.state;
   const [reviews, setReviews] = useState([]);
-  const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
  
@@ -55,6 +54,7 @@ export default function ItemPreview(props) {
     }
   }, [item]);
 
+  console.log(item.images);
   
   
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function ItemPreview(props) {
           return response.json();
         })
         .then((data) => {
-          setImage(data);
+         const image = data;
           
           setLoading(false);
         })
@@ -91,7 +91,6 @@ export default function ItemPreview(props) {
     if (!item){
       return <NotFound />; // Display an error message if there's an error in fetching data
     }
-    console.log(item.images);
 
   return (
     <div className="container">
