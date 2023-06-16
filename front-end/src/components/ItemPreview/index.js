@@ -67,6 +67,11 @@ export default function ItemPreview() {
   if (error) {
     return <NotFound />; // Display an error message if there's an error in fetching data
   }
+  // Check if the URL contains "/items" and remove it if present
+  if (item.images && item.images.includes("/items")) {
+    item.images = item.images.replace("/items", "");
+  }
+  console.log(item.images);
 
   return (
     <div className="container">
