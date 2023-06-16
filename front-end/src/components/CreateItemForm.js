@@ -173,7 +173,13 @@ const CreateItemForm = () => {
         <button type="submit" className="btn btn-primary">
           Create Item
         </button>
-        {isPending && <div> Creating item...</div>}
+        {isPending && <div
+        style={{ fontSize: "1.2rem",
+        color: "blue",
+        marginTop: "13px",
+        textAlign: "center",
+        fontStyle: "italic",
+      }}> Creating item...</div>}
       </form>
     </div>
   );

@@ -76,7 +76,13 @@ const LoginForm = () => {
             <button type="submit" className="btn btn-primary btn-block">
               Login
             </button>
-            {isPending && <div> Loading...</div>}
+            {isPending && <div
+            style={{ fontSize: "1.2rem",
+            color: "blue",
+            marginTop: "13px",
+            textAlign: "center",
+            fontStyle: "italic",
+          }}> Loading...</div>}
           </form>
           <p className="text-center mt-3">
             Don't have an account? <Link to="/createaccount">Create one</Link>.

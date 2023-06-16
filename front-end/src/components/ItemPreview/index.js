@@ -52,7 +52,15 @@ export default function ItemPreview() {
   }, [item]);
 
   if (loading) {
-    return <div>Loading...</div>; // Display a loading message while fetching the item
+    return <div 
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100px",
+      fontSize: "1.5rem",
+      color: "#888",
+    }}>Loading...</div>; // Display a loading message while fetching the item
   }
 
   if (error) {

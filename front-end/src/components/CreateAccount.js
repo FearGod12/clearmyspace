@@ -121,7 +121,13 @@ const CreateAccount = () => {
             <button type="submit" className="btn btn-primary btn-block">
               Create Account
             </button>
-            {isPending && <div> Creating account...</div>}
+            {isPending && <div
+              style={{ fontSize: "1.2rem",
+              color: "blue",
+              marginTop: "13px",
+              textAlign: "center",
+              fontStyle: "italic",
+            }}> Creating account...</div>}
           </form>
           <p className="text-center mt-3">
             Already have an account? <Link to="/login">Login</Link>.
