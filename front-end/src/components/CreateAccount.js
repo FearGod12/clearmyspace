@@ -9,10 +9,13 @@ const CreateAccount = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [address, setAdress]=useState("")
+  const [isPending, setIsPending] = useState(false)
   const navigate = useNavigate();
 
   const handleCreateAccount = (e) => {
     e.preventDefault();
+    setIsPending(true)
     fetch(`${global.base_api}/users`, {
       method: "POST",
       headers: {
@@ -23,14 +26,17 @@ const CreateAccount = () => {
         lastname: lastname,
         username: username,
         email: email,
+        address: address,
         phone: phone,
         password: password,
       }),
     })
       .then((response) => {
+        setIsPending(false)
         if (!response.ok) {
           throw new Error("Failed to create an account.");
         }
+        alert("Account created")
         navigate("/login");
       })
       .catch((error) => {
@@ -83,6 +89,16 @@ const CreateAccount = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+              </div>
+              <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="address"
+                value={address}
+                onChange={(e) => setAdress(e.target.value)}
+                required
+              />
             </div>
             <div className="mb-3">
               <input
@@ -107,6 +123,13 @@ const CreateAccount = () => {
             <button type="submit" className="btn btn-primary btn-block">
               Create Account
             </button>
+            {isPending && <div
+              style={{ fontSize: "1.2rem",
+              color: "blue",
+              marginTop: "13px",
+              textAlign: "center",
+              fontStyle: "italic",
+            }}> Creating account...</div>}
           </form>
           <p className="text-center mt-3">
             Already have an account? <Link to="/login">Login</Link>.

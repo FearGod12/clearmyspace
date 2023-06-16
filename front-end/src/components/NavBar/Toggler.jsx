@@ -69,6 +69,11 @@ export default function Toggler() {
             </Link>
           </li>
           <li>
+            <Link className="dropdown-item" to="/createitem">
+              Create new item
+            </Link>
+          </li>
+          <li>
             <hr className="dropdown-divider" />
           </li>
           <li>

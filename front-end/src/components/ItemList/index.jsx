@@ -44,7 +44,10 @@ const ItemList = () => {
             filteredItems.map((item) => (
               <div key={item.id} className="col-lg-4 col-md-6">
                 <Link
-                  to={`/items/${item.id}`}
+                  to={{
+                    pathname: `/items/${item.id}`,
+                  }}
+                  state={{ item: item }}
                   style={{ textDecoration: "none" }}
                 >
                   <div className="card">

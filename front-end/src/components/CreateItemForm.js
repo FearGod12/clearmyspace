@@ -5,6 +5,7 @@ import global from "../data/global.json";
 const CreateItemForm = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const [isPending, setIsPending] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -54,6 +55,8 @@ const CreateItemForm = () => {
     formDataWithImage.append("category_id", formData.category_id);
     formDataWithImage.append("price", formData.price);
     formDataWithImage.append("user_id", formData.user_id)
+
+    setIsPending(true)
   
     try {
       const response = await fetch(global.base_api + "/items", {
@@ -61,6 +64,7 @@ const CreateItemForm = () => {
         body: formDataWithImage,
       });
   
+      setIsPending(false)
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -73,6 +77,7 @@ const CreateItemForm = () => {
       console.log(error);
       alert("Error creating item");
     }
+    setIsPending(false)
   };
   
 
@@ -168,6 +173,13 @@ const CreateItemForm = () => {
         <button type="submit" className="btn btn-primary">
           Create Item
         </button>
+        {isPending && <div
+        style={{ fontSize: "1.2rem",
+        color: "blue",
+        marginTop: "13px",
+        textAlign: "center",
+        fontStyle: "italic",
+      }}> Creating item...</div>}
       </form>
     </div>
   );
