@@ -41,12 +41,12 @@ def do_deploy(archive_path):
 
     #  upload archive to server
     put(archive_path, '/tmp/')
-    run('mkdir -p {}'.format(path))
-    run('tar -xvzf /tmp/{} -C {}'.format(basename, path))
-    run('mv {}/build/* {}'.format(path, path))
-    run('rm -rf {}/build/'.format(path))
-    run('rm /data/cms/current')
-    run('ln -s {} /data/cms/current'.format(path))
+    run('sudo mkdir -p {}'.format(path))
+    run('sudo tar -xvzf /tmp/{} -C {}'.format(basename, path))
+    run('sudo mv {}/build/* {}'.format(path, path))
+    run('sudo rm -rf {}/build/'.format(path))
+    run('sudo rm /data/cms/current')
+    run('sudo ln -s {} /data/cms/current'.format(path))
     return True
 
 
