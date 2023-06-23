@@ -13,7 +13,8 @@ app.secret_key = getenv('API_SECRET_KEY')
 app.register_blueprint(app_views)
 app.url_map.strict_slashes = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}},
+            supports_credentials=True)
 
 
 @app.errorhandler(404)
