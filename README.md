@@ -70,7 +70,7 @@ website.
 ### TEAM
 
 1. Team Member 1: Abraham OLAGUNJU - Full-Stack Developer
-1. Team Member 2: Chukwudi ONYENIKE - DevOps Engineer
+1. Team Member 2: Chukwudi ONYENIKE - Full-Stack Developer
 
 [Read More About the project here!](https://docs.google.com/document/d/1ADEp8iA4lPIjqcgZSQ1AkKpEK3MMria0KNvj8GMK0mc/edit?usp=sharing)
 
@@ -81,7 +81,7 @@ website.
 1. Run the following command to clone the repository:
 
 ```
-git clone https://github.com/OluwaninsolaAO/clearmyspace.git
+git clone https://github.com/FearGod12/clearmyspace.git
 ```
 
 1. Wait for the cloning process to complete. Once finished, you will have a local copy of the repository on your machine.
